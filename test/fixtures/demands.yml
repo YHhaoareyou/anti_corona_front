@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  posi_id: 1
+  user_id: 1
+  mask: 1
+  medical_mask: 1
+  hand_sanitizer_spray: 1
+  hand_sanitizer_gel: 1
+  tissue_paper: 1
+  toilet_paper: 1
+  alcohol_wet_wipe: 1
+  other: MyString
+
+two:
+  posi_id: 1
+  user_id: 1
+  mask: 1
+  medical_mask: 1
+  hand_sanitizer_spray: 1
+  hand_sanitizer_gel: 1
+  tissue_paper: 1
+  toilet_paper: 1
+  alcohol_wet_wipe: 1
+  other: MyString
