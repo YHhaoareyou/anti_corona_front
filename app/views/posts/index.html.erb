@@ -1,44 +1,113 @@
-<p id="notice"><%= notice %></p>
-
-<h1 class='text-success'>Posts</h1>
-
-<%= link_to "View only my posts", "/users/#{current_user.id}" %>
-
 <div class='row'>
-  <% @posts.each do |post| %>
-    <div class='col-3 p-2'>
-      <div class='p-3' style='border: 1px solid #ccc; border-radius: 5px; cursor: pointer;' onclick="window.location = '/posts/<%= post.id %>';">
-        <div class='row'>
-          <div class='col-6'>
-            <h4>I need...</h4>
-            <% post.demand.attributes.except!('id', 'post_id', 'created_at', 'updated_at').compact.each do |key, count| %>
-              <p><%= suppliments_names_units[key]['eng_name'] %> <%= count %> <%= suppliments_names_units[key]['eng_unit'] %></p>
-            <% end %>
+  <div class='col-3'>
+    <%= form_with url: "/", method: :get do |form| %>
+      <div>
+        <h4>What do you need:</h4>
+        <% suppliments_names_units.each do |key, name| %>
+          <% next if key == 'other' %>
+          <div class="form-check">
+            <%= form.check_box "posts[supply_#{key}]", class: 'filter_form_checkbox' %>
+            <%= form.label "posts[supply_#{key}]", name['eng_name'], class: 'form-label' %>
           </div>
-          <div class='col-6'>
-            <h4>I can provide...</h4>
-            <% post.supply.attributes.except!('id', 'post_id', 'created_at', 'updated_at').compact.each do |key, count| %>
-              <p><%= suppliments_names_units[key]['eng_name'] %> <%= count %> <%= suppliments_names_units[key]['eng_unit'] %></p>
-            <% end %>
-          </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= form.label "posts[supply_other]", 'Other:', class: 'form-label mr-2', style: 'float:left;' %>
+          <%= form.text_area "posts[supply_other]" %>
         </div>
-
-        <hr />
-
-        <div>
-          Preferred Exchange Method: <%= post.exchange_method == 'Both' ? 'Mail or In Person' : post.exchange_method %>
-          <br />
-          Preferred Exchange Date & Time: <%= post.preferred_date_time %>
-          <br />
-          Preferred Exchange Place: <%= post.preferred_place %>
-          <br />
-        </div>
-
       </div>
+
+      <hr />
+
+      <div>
+        <h4>What can you give:</h4>
+        <% suppliments_names_units.each do |key, name| %>
+          <% next if key == 'other' %>
+          <div class="form-check">
+            <%= form.check_box "posts[demand_#{key}]", class: 'filter_form_checkbox' %>
+            <%= form.label "posts[demand_#{key}]", name['eng_name'], class: 'form-label' %>
+          </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= form.label "posts[demand_other]", 'Other:', class: 'form-label mr-2', style: 'float:left;' %>
+          <%= form.text_area "posts[demand_other]" %>
+        </div>
+      </div>
+
+      <hr />
+
+      <div>
+        <h4>Preferrences:</h4>
+        <div class="form-group">
+          Exchange Method:
+          <p>
+            Mail <%= form.radio_button "posts[exchange_method]", "Mail" %><span class='px-3'></span>
+            In person <%= form.radio_button "posts[exchange_method]", "In person" %><span class='px-3'></span>
+            Both <%= form.radio_button "posts[exchange_method]", "Both" %>
+          </p>
+        </div>
+
+        <div class="form-group">
+          <%= form.label "posts[preferred_place]", 'Place: ', class: 'form-label mr-2', style: 'float:left;' %>
+          <%= form.text_area "posts[preferred_place]" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label "posts[preferred_date_time]", 'Date & Time: ', class: 'form-label mr-2', style: 'float:left;' %>
+          <%= form.text_area "posts[preferred_date_time]" %>
+        </div>
+      </div>
+
+      <%= form.submit class: 'btn btn-success' %>
+    <% end %>
+  </div>
+
+  <div class='col-9'>
+    <p id="notice"><%= notice %></p>
+    <%= link_to "View only my posts", "/my_posts" %>
+    <%= link_to 'New Post', new_post_path %>
+    <div class='row'>
+      <% @posts.each do |post| %>
+        <div class='col-4 p-2'>
+          <div class='p-3' style='border: 1px solid #ccc; border-radius: 5px; cursor: pointer;' onclick="window.location = '/posts/<%= post.id %>';">
+            <div class='row'>
+              <div class='col-6'>
+                <h4>I need...</h4>
+                <% post.demand.attributes.except!('id', 'post_id', 'created_at', 'updated_at').compact.each do |key, count| %>
+                  <p><%= suppliments_names_units[key]['eng_name'] %> <%= count %> <%= suppliments_names_units[key]['eng_unit'] %></p>
+                <% end %>
+              </div>
+              <div class='col-6'>
+                <h4>I can offer...</h4>
+                <% post.supply.attributes.except!('id', 'post_id', 'created_at', 'updated_at').compact.each do |key, count| %>
+                  <p><%= suppliments_names_units[key]['eng_name'] %> <%= count %> <%= suppliments_names_units[key]['eng_unit'] %></p>
+                <% end %>
+              </div>
+            </div>
+
+            <hr />
+
+            <div>
+              Preferred Exchange Method: <%= post.exchange_method == 'Both' ? 'Mail or In Person' : post.exchange_method %>
+              <br />
+              Preferred Exchange Date & Time: <%= post.preferred_date_time %>
+              <br />
+              Preferred Exchange Place: <%= post.preferred_place %>
+              <br />
+            </div>
+
+          </div>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+  </div>
+
 </div>
 
-<br>
-
-<%= link_to 'New Post', new_post_path %>
+<style media="screen">
+  .filter_form_checkbox {
+    margin-right: 5px;
+    float: left;
+  }
+</style>

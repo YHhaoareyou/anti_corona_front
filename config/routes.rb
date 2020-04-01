@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'users/:id', to: 'users#show'
+  resources :messages
   post 'posts/close/:id', to: 'posts#close'
   post 'posts/reopen/:id', to: 'posts#reopen'
   resources :posts
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get "login", :to => "users/sessions#new"
     get "logout", :to => "users/sessions#destroy"
   end
+  get 'my_posts', to: 'users#show'
 
   root 'posts#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

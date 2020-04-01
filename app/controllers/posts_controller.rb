@@ -5,7 +5,12 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.where(open_status: 1)
+    if params['posts']
+      search_params = params['posts'].select{ |k, value| value != '0' && !value.blank? }
+      @posts = Post.search(search_params)
+    else
+      @posts = Post.where(open_status: 1)
+    end
   end
 
   # GET /posts/1
@@ -79,23 +84,23 @@ class PostsController < ApplicationController
     }
 
     demand_update_hash = {
-      mask: params[:post][:demand_mask],
-      medical_mask: params[:post][:demand_medical_mask],
-      hand_sanitizer_spray: params[:post][:demand_hand_sanitizer_spray],
-      hand_sanitizer_gel: params[:post][:demand_hand_sanitizer_gel],
-      alcohol_wet_wipe: params[:post][:demand_alcohol_wet_wipe],
-      tissue_paper: params[:post][:demand_tissue_paper],
-      toilet_paper: params[:post][:demand_toilet_paper],
+      mask: params[:post][:demand_mask].blank? ? nil : params[:post][:demand_mask],
+      medical_mask: params[:post][:demand_medical_mask].blank? ? nil : params[:post][:demand_medical_mask],
+      hand_sanitizer_spray: params[:post][:demand_hand_sanitizer_spray].blank? ? nil : params[:post][:demand_hand_sanitizer_spray],
+      hand_sanitizer_gel: params[:post][:demand_hand_sanitizer_gel].blank? ? nil : params[:post][:demand_hand_sanitizer_gel],
+      alcohol_wet_wipe: params[:post][:demand_alcohol_wet_wipe].blank? ? nil : params[:post][:demand_alcohol_wet_wipe],
+      tissue_paper: params[:post][:demand_tissue_paper].blank? ? nil : params[:post][:demand_tissue_paper],
+      toilet_paper: params[:post][:demand_toilet_paper].blank? ? nil : params[:post][:demand_toilet_paper],
       other: params[:post][:demand_other].blank? ? nil : params[:post][:demand_other]
     }
     supply_update_hash = {
-      mask: params[:post][:supply_mask],
-      medical_mask: params[:post][:supply_medical_mask],
-      hand_sanitizer_spray: params[:post][:supply_hand_sanitizer_spray],
-      hand_sanitizer_gel: params[:post][:supply_hand_sanitizer_gel],
-      alcohol_wet_wipe: params[:post][:supply_alcohol_wet_wipe],
-      tissue_paper: params[:post][:supply_tissue_paper],
-      toilet_paper: params[:post][:supply_toilet_paper],
+      mask: params[:post][:supply_mask].blank? ? nil : params[:post][:supply_mask],
+      medical_mask: params[:post][:supply_medical_mask].blank? ? nil : params[:post][:supply_medical_mask],
+      hand_sanitizer_spray: params[:post][:supply_hand_sanitizer_spray].blank? ? nil : params[:post][:supply_hand_sanitizer_spray],
+      hand_sanitizer_gel: params[:post][:supply_hand_sanitizer_gel].blank? ? nil : params[:post][:supply_hand_sanitizer_gel],
+      alcohol_wet_wipe: params[:post][:supply_alcohol_wet_wipe].blank? ? nil : params[:post][:supply_alcohol_wet_wipe],
+      tissue_paper: params[:post][:supply_tissue_paper].blank? ? nil : params[:post][:supply_tissue_paper],
+      toilet_paper: params[:post][:supply_toilet_paper].blank? ? nil : params[:post][:supply_toilet_paper],
       other: params[:post][:supply_other].blank? ? nil : params[:post][:supply_other]
     }
 

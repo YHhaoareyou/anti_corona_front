@@ -2,7 +2,7 @@ module ApplicationHelper
   def suppliments_names_units
     {
       'mask' => {'eng_name' => 'Mask', 'eng_unit' => 'pieces'},
-      'medical_mask' => {'eng_name' => 'Medical Mask', 'eng_unit' => 'pieces'},
+      'medical_mask' => {'eng_name' => 'Medical mask', 'eng_unit' => 'pieces'},
       'hand_sanitizer_spray' => {'eng_name' => 'Hand sanitizer spray', 'eng_unit' => 'ml'},
       'hand_sanitizer_gel' => {'eng_name' => 'Hand sanitizer gel', 'eng_unit' => 'ml'},
       'alcohol_wet_wipe' => {'eng_name' => 'Alcohol wet wipe', 'eng_unit' => 'pieces'},

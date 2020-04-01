@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_01_091449) do
+ActiveRecord::Schema.define(version: 2020_04_01_135938) do
 
   create_table "demands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "post_id"
@@ -26,9 +26,19 @@ ActiveRecord::Schema.define(version: 2020_04_01_091449) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "open_status", limit: 1, default: 1
     t.integer "user_id"
+    t.string "exchange_method", limit: 100
+    t.string "preferred_date_time"
+    t.string "preferred_place"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -50,9 +60,13 @@ ActiveRecord::Schema.define(version: 2020_04_01_091449) do
   create_table "suppliments_names", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "key"
     t.string "english"
+    t.string "english_unit", limit: 100
     t.string "japanese"
+    t.string "japanese unit", limit: 100
     t.string "zh_chinese"
+    t.string "zh_chinese_unit", limit: 100
     t.string "sp_chinese"
+    t.string "sp_chinese_unit", limit: 100
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
