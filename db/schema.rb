@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_01_135938) do
+ActiveRecord::Schema.define(version: 2020_04_02_055750) do
 
   create_table "demands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "post_id"
@@ -26,6 +26,13 @@ ActiveRecord::Schema.define(version: 2020_04_01_135938) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "favorite_posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "user_id"
     t.string "message"
@@ -34,11 +41,14 @@ ActiveRecord::Schema.define(version: 2020_04_01_135938) do
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.integer "open_status", limit: 1, default: 1
+    t.boolean "open_status", default: true
     t.integer "user_id"
-    t.string "exchange_method", limit: 100
+    t.string "exchange_method", limit: 10
     t.string "preferred_date_time"
     t.string "preferred_place"
+    t.string "email", limit: 100
+    t.text "other_sns_urls"
+    t.string "phone", limit: 20
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -9,8 +9,9 @@ class PostsController < ApplicationController
       search_params = params['posts'].select{ |k, value| value != '0' && !value.blank? }
       @posts = Post.search(search_params)
     else
-      @posts = Post.where(open_status: 1)
+      @posts = Post.where("open_status = 1 OR user_id = #{current_user.id}")
     end
+    @followed_post_ids = current_user.followed_posts.pluck(:id)
   end
 
   # GET /posts/1
@@ -34,7 +35,10 @@ class PostsController < ApplicationController
       user_id: current_user.id,
       exchange_method: params[:post][:exchange_method],
       preferred_place: params[:post][:preferred_place],
-      preferred_date_time: params[:post][:preferred_date_time]
+      preferred_date_time: params[:post][:preferred_date_time],
+      phone: params[:post][:phone],
+      email: params[:post][:email],
+      other_sns_urls: params[:post][:other_sns_urls].reject{ |url| url.empty? }.join(',')
     )
 
     @demand = Demand.new(
@@ -62,8 +66,8 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @demand.save && @supply.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
+        format.html { redirect_to controller: 'users', action: 'show', id: current_user.id, notice: 'Post was successfully created.' }
+        format.json { render "users/show/#{current_user.id}", status: :created }
       else
         format.html { render :new }
         format.json { render json: @demand.errors + @supply.errors, status: :unprocessable_entity }
@@ -80,7 +84,10 @@ class PostsController < ApplicationController
     post_update_hash = {
       exchange_method: params[:post][:exchange_method],
       preferred_place: params[:post][:preferred_place],
-      preferred_date_time: params[:post][:preferred_date_time]
+      preferred_date_time: params[:post][:preferred_date_time],
+      phone: params[:post][:phone],
+      email: params[:post][:email],
+      other_sns_urls: params[:post][:other_sns_urls].reject{ |url| url.empty? }.join(',')
     }
 
     demand_update_hash = {
@@ -106,8 +113,8 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.update_attributes(post_update_hash) && @demand.update_attributes(demand_update_hash) && @supply.update_attributes(supply_update_hash)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
+        format.html { redirect_to controller: 'users', action: 'show', id: current_user.id, notice: 'Post was successfully updated.' }
+        format.json { render "users/show/#{current_user.id}", status: :ok, location: @post }
       else
         format.html { render :edit }
         format.json { render json: @demand.errors + @supply.errors, status: :unprocessable_entity }
@@ -116,26 +123,50 @@ class PostsController < ApplicationController
   end
 
   def close
+    redirect_path = params['redirect_path'] == 'root' ? '/' : "/#{params['redirect_path']}"
     respond_to do |format|
       if @post.update(open_status: 0)
-        format.html { redirect_to @post, notice: 'Post was successfully closed.' }
-        format.json { render :index, status: :ok, location: @post }
+        format.html { redirect_to redirect_path, notice: 'Post was successfully closed.' }
+        format.json { render redirect_path, status: :ok, location: @post }
       else
-        format.html { render :edit }
+        format.html { render redirect_path }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def reopen
+    redirect_path = params['redirect_path'] == 'root' ? '/' : "/#{params['redirect_path']}"
     respond_to do |format|
       if @post.update(open_status: 1)
-        format.html { redirect_to @post, notice: 'Post was successfully reopened.' }
-        format.json { render :show, status: :ok }
+        format.html { redirect_to redirect_path, notice: 'Post was successfully reopened.' }
+        format.json { render redirect_path, status: :ok }
       else
-        format.html { render :edit }
+        format.html { render redirect_path }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def follow
+    @followed_posts_reference =  FollowedPostsReference.new(user_id: current_user.id, post_id: params[:post_id])
+    respond_to do |format|
+      if @followed_posts_reference.save
+        format.html { redirect_to '/', notice: 'You followed a post.' }
+        format.json { render '/', status: :ok }
+      else
+        format.html { render '/' }
+        format.json { render json: @followed_posts_reference.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def unfollow
+    FollowedPostsReference.find_by(user_id: current_user.id, post_id: params[:post_id]).destroy
+    redirect_path = params['redirect_path'] == 'root' ? '/' : "/#{params['redirect_path']}"
+    respond_to do |format|
+      format.html { redirect_to redirect_path, notice: 'Post is unfollowed.' }
+      format.json { head :no_content }
     end
   end
 

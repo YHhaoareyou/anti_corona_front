@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>QuarantineSuppliesExchange</title>
+    <title>Quarantine Supplies Exchange</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <div class='row'>
       <div class='col-10 offset-1'>
+        <p id="notice"><%= notice %></p>
         <%= yield %>
       </div>
     </div>

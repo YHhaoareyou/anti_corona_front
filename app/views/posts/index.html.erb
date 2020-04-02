@@ -1,6 +1,6 @@
 <div class='row'>
   <div class='col-3'>
-    <%= form_with url: "/", method: :get do |form| %>
+    <%= form_with url: "/", method: :get, local: true do |form| %>
       <div>
         <h4>What do you need:</h4>
         <% suppliments_names_units.each do |key, name| %>
@@ -38,7 +38,7 @@
       <hr />
 
       <div>
-        <h4>Preferrences:</h4>
+        <h4>Preferences:</h4>
         <div class="form-group">
           Exchange Method:
           <p>
@@ -64,13 +64,12 @@
   </div>
 
   <div class='col-9'>
-    <p id="notice"><%= notice %></p>
-    <%= link_to "View only my posts", "/my_posts" %>
-    <%= link_to 'New Post', new_post_path %>
+    <%= link_to "View only my posts", "/my_posts", class: 'btn btn-primary mr-2' %>
+    <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
     <div class='row'>
       <% @posts.each do |post| %>
         <div class='col-4 p-2'>
-          <div class='p-3' style='border: 1px solid #ccc; border-radius: 5px; cursor: pointer;' onclick="window.location = '/posts/<%= post.id %>';">
+          <div class='p-3' style='border: 1px solid #ccc; border-radius: 5px;'>
             <div class='row'>
               <div class='col-6'>
                 <h4>I need...</h4>
@@ -97,8 +96,37 @@
               <br />
             </div>
 
+            <hr />
+
+            <div class='row'>
+              <div class='col-4' data-toggle="modal" data-target="#contact_modal_<%= post.id %>">
+                <button class='btn btn-success'>Contact</button>
+              </div>
+
+              <% if post.user_id == current_user.id %>
+                <div class='col-4'>
+                  <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-warning' %>
+                </div>
+
+                <div class='col-4'>
+                  <% if post.open_status %>
+                    <%= button_to 'Close', "/posts/close/#{post.id}?redirect_path=root", class: 'btn btn-danger' %>
+                  <% else %>
+                    <%= button_to 'Reopen', "/posts/reopen/#{post.id}?redirect_path=root", class: 'btn btn-warning' %>
+                  <% end %>
+                </div>
+              <% else %>
+                <% if @followed_post_ids.include?(post.id) %>
+                  <%= button_to 'Unfollow', "/posts/unfollow/#{post.id}?redirect_path=root", class: 'btn btn-danger' %>
+                <% else %>
+                  <%= button_to 'Follow', "/posts/follow/#{post.id}?redirect_path=root", class: 'btn btn-warning' %>
+                <% end %>
+              <% end %>
+            </div>
           </div>
         </div>
+
+        <%= render partial: 'contact_modal', locals: { post: post } %>
       <% end %>
     </div>
   </div>

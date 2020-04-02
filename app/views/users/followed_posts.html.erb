@@ -1,5 +1,5 @@
 <div class='row'>
-  <h2>My posts</h2>
+  <h2>Followed posts</h2>
 
   <% @posts.each do |post| %>
     <div class='col-3 p-2'>
@@ -45,16 +45,11 @@
         <hr />
 
         <div class='row'>
-          <div class='col-6'>
-            <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-warning' %>
+          <div class='col-4' data-toggle="modal" data-target="#contact_modal_<%= post.id %>">
+            <button class='btn btn-success'>Contact</button>
           </div>
-
-          <div class='col-6'>
-            <% if post.open_status %>
-              <%= button_to 'Close', "/posts/close/#{post.id}?redirect_path=my_posts", class: 'btn btn-danger' %>
-            <% else %>
-              <%= button_to 'Reopen', "/posts/reopen/#{post.id}?redirect_path=my_posts", class: 'btn btn-danger' %>
-            <% end %>
+          <div class='col-4'>
+            <%= button_to 'Unfollow', "/posts/unfollow/#{post.id}?redirect_path=followed_posts", class: 'btn btn-danger' %>
           </div>
         </div>
 

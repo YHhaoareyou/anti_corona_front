@@ -1,70 +1,98 @@
-<%= form_with(model: post, local: true, class: 'row') do |form| %>
-  <div class='col-8 offset-2'>
-    <% if post&.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<%= form_with(model: post, local: true, class: 'row', id: 'new_post_form') do |form| %>
+  <% if post&.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-        <ul>
-          <% post.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <div class='row'>
-      <div class='col-5'>
-        <h3>I need...</h3>
-
-        <% suppliments_names_units.each do |key, name_unit| %>
-          <% next if key == 'other' %>
-          <div class="form-group">
-            <%= "#{name_unit['eng_name']} (#{name_unit['eng_unit']}):" %>
-            <%= form.text_field "demand_#{key}".to_sym, class: 'form-control' %>
-          </div>
+      <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
+      </ul>
+    </div>
+  <% end %>
 
+  <div class='row'>
+    <div class='col-3 offset-1' id='demand_inputs_div'>
+      <h3>I need...</h3>
+      <sm>* Please fill in at least one field</sm>
+
+      <% suppliments_names_units.each do |key, name_unit| %>
+        <% next if key == 'other' %>
         <div class="form-group">
-          Other:<%= form.text_field :demand_other, class: 'form-control' %>
+          <%= "#{name_unit['eng_name']} (#{name_unit['eng_unit']}):" %>
+          <%= form.number_field "demand_#{key}".to_sym, class: 'form-control', value: post.demand.attributes[key] %>
         </div>
-      </div>
+      <% end %>
 
-      <div class='col-5 offset-1'>
-        <h3>I can provide...</h3>
-
-        <% suppliments_names_units.each do |key, name_unit| %>
-          <% next if key == 'other' %>
-          <div class="form-group">
-            <%= "#{name_unit['eng_name']} (#{name_unit['eng_unit']}):" %>
-            <%= form.text_field "supply_#{key}".to_sym, class: 'form-control' %>
-          </div>
-        <% end %>
-
-        <div class="form-group">
-          Other:<%= form.text_field :supply_other, class: 'form-control' %>
-        </div>
-      </div>
-
-      <div class='col-8'>
-        <div class="form-group">
-          Preferred Exchange Method:<span class='px-3'></span>
-          Mail <%= form.radio_button :exchange_method, "Mail" %><span class='px-3'></span>
-          In person <%= form.radio_button :exchange_method, "In person" %><span class='px-3'></span>
-          Both <%= form.radio_button :exchange_method, "Both" %>
-        </div>
-        <div class="form-group">
-          Preferred Exchange Date & Time:<%= form.text_area :preferred_date_time, class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          Preferred Exchange Place (not need to fill in if you choose to exchange with mail):<%= form.text_area :preferred_place, class: 'form-control' %>
-        </div>
-      </div>
-
-      <div class="col-4 actions">
-        <br />
-        <%= form.submit class: 'btn btn-success' %>
+      <div class="form-group">
+        Other:<%= form.text_field :demand_other, class: 'form-control', value: post.demand.other %>
       </div>
     </div>
 
+    <div class='col-3 offset-1' id='supply_inputs_div'>
+      <h3>I can provide...</h3>
+      <sm>* Please fill in at least one field</sm>
+
+      <% suppliments_names_units.each do |key, name_unit| %>
+        <% next if key == 'other' %>
+        <div class="form-group">
+          <%= "#{name_unit['eng_name']} (#{name_unit['eng_unit']}):" %>
+          <%= form.number_field "supply_#{key}".to_sym, class: 'form-control', value: post.supply.attributes[key] %>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        Other:<%= form.text_field :supply_other, class: 'form-control', value: post.supply.other %>
+      </div>
+    </div>
+
+    <div class='col-3 offset-1' id='preference_inputs_div'>
+
+      <div class="form-group">
+        <b>Preferred Exchange Method:</b><br />
+        <sm>* Please select one</sm><br />
+        Mail <%= form.radio_button :exchange_method, "Mail" %><span class='px-3'></span>
+        In person <%= form.radio_button :exchange_method, "In person" %><span class='px-3'></span>
+        Both <%= form.radio_button :exchange_method, "Both", required: 'true' %>
+      </div>
+
+      <div id='preference_inputs_div'>
+        <div class="form-group">
+          <b>Preferred Exchange Date & Time:</b><%= form.text_area :preferred_date_time, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <b>Preferred Exchange Place (not need to fill in if you choose to exchange with mail):</b><%= form.text_area :preferred_place, class: 'form-control' %>
+        </div>
+      </div>
+
+      <br />
+
+      <div id='contact_inputs_div'>
+        <b>Contact</b><br />
+        <sm>* Please fill in at least one field</sm>
+        <div class="form-group">
+          <b>Phone:</b><%= form.text_field :phone, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <b>Email:</b><%= form.text_field :email, class: 'form-control' %>
+        </div>
+        <div class="form-group" id='other_sns_url_inputs_div'>
+          <b>Other SNS link:</b><span class='btn btn-primary' id='form_add_url_input_button'>+</span><br />
+          <% if urls = post&.other_sns_urls %>
+            <% urls.split(',').each do |url| %>
+              <input class="form-control" type="text" name="post[other_sns_urls][]" value='<%= url %>'>
+            <% end %>
+          <% end %>
+          <input class="form-control" type="text" name="post[other_sns_urls][]">
+        </div>
+      </div>
+
+      <br />
+
+      <div class="actions">
+        <br />
+        <%= form.submit class: 'btn btn-success', id: 'form_submit', disabled: true %>
+      </div>
+    </div>
   </div>
 <% end %>

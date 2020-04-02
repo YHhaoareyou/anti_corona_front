@@ -6,6 +6,11 @@ class UsersController < ApplicationController
     @posts = @user.posts
   end
 
+  def followed_posts
+    @posts = current_user.followed_posts.where(open_status: 1)
+    # @closed_posts = current_user.followed_posts.where(open_status: 0)
+  end
+
   private
 
     def set_user

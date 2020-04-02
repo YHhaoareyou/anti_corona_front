@@ -2,9 +2,10 @@ class Post < ApplicationRecord
   has_one :demand
   has_one :supply
 
+  has_many :followed_posts_references
+  has_many :followers, :through => :followed_posts_references, :source => :users
+
   def self.search(search_params)
-    p search_params
-    p '========================'
     demand_sql = ""
     supply_sql = ""
 
