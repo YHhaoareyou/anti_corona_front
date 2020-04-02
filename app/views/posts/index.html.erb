@@ -1,136 +1,130 @@
+<button class='btn btn-info' type="button" data-toggle="collapse" data-target="#filter_form">
+  Filter Form 🔻
+</button>
+
+<div class='collapse card mb-2' id='filter_form'>
+  <%= form_with url: "/", method: :get, local: true, class: 'row card-body' do |form| %>
+    <div class='col-12 col-lg-4'>
+      <h4>What do you need:</h4>
+      <% suppliments_names_units.each do |key, name| %>
+        <% next if key == 'other' %>
+        <div class="form-check">
+          <%= form.check_box "posts[supply_#{key}]", class: 'filter_form_checkbox' %>
+          <%= form.label "posts[supply_#{key}]", name['eng_name'], class: 'form-label' %>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= form.label "posts[supply_other]", 'Other:', class: 'form-label mr-2', style: 'float:left;' %>
+        <%= form.text_area "posts[supply_other]" %>
+      </div>
+    </div>
+
+    <div class='col-12 col-lg-4'>
+      <h4>What can you give:</h4>
+      <% suppliments_names_units.each do |key, name| %>
+        <% next if key == 'other' %>
+        <div class="form-check">
+          <%= form.check_box "posts[demand_#{key}]", class: 'filter_form_checkbox' %>
+          <%= form.label "posts[demand_#{key}]", name['eng_name'], class: 'form-label' %>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= form.label "posts[demand_other]", 'Other:', class: 'form-label mr-2', style: 'float:left;' %>
+        <%= form.text_area "posts[demand_other]" %>
+      </div>
+    </div>
+
+    <div class='col-12 col-lg-4'>
+      <h4>Preferences:</h4>
+      <div class="form-group">
+        Exchange Method:
+        <p>
+          Mail <%= form.radio_button "posts[exchange_method]", "Mail" %><span class='px-3'></span>
+          In person <%= form.radio_button "posts[exchange_method]", "In person" %><span class='px-3'></span>
+          Both <%= form.radio_button "posts[exchange_method]", "Both" %>
+        </p>
+      </div>
+
+      <div class="form-group">
+        <%= form.label "posts[preferred_place]", 'Place: ', class: 'form-label mr-2', style: 'float:left;' %>
+        <%= form.text_area "posts[preferred_place]" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label "posts[preferred_date_time]", 'Date & Time: ', class: 'form-label mr-2', style: 'float:left;' %>
+        <%= form.text_area "posts[preferred_date_time]" %>
+      </div>
+
+      <%= form.submit "Filter", class: 'btn btn-info' %>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to 'Create New Post', new_post_path, class: 'btn btn-success text-white' %>
 <div class='row'>
-  <div class='col-3'>
-    <%= form_with url: "/", method: :get, local: true do |form| %>
-      <div>
-        <h4>What do you need:</h4>
-        <% suppliments_names_units.each do |key, name| %>
-          <% next if key == 'other' %>
-          <div class="form-check">
-            <%= form.check_box "posts[supply_#{key}]", class: 'filter_form_checkbox' %>
-            <%= form.label "posts[supply_#{key}]", name['eng_name'], class: 'form-label' %>
+  <% @posts.each do |post| %>
+    <div class='col-lg-3 p-2 col-12'>
+      <div class='p-3 card'>
+        <div class='row' style='height: 180px; overflow: auto;'>
+          <div class='col-lg-6 col-6'>
+            <h4>I need...</h4>
+            <% post.demand.attributes.except!('id', 'post_id', 'created_at', 'updated_at').compact.each do |key, count| %>
+              <p><%= suppliments_names_units[key]['eng_name'] %> <%= count %> <%= suppliments_names_units[key]['eng_unit'] %></p>
+            <% end %>
           </div>
-        <% end %>
-
-        <div class="form-group">
-          <%= form.label "posts[supply_other]", 'Other:', class: 'form-label mr-2', style: 'float:left;' %>
-          <%= form.text_area "posts[supply_other]" %>
-        </div>
-      </div>
-
-      <hr />
-
-      <div>
-        <h4>What can you give:</h4>
-        <% suppliments_names_units.each do |key, name| %>
-          <% next if key == 'other' %>
-          <div class="form-check">
-            <%= form.check_box "posts[demand_#{key}]", class: 'filter_form_checkbox' %>
-            <%= form.label "posts[demand_#{key}]", name['eng_name'], class: 'form-label' %>
+          <div class='col-lg-6 col-6'>
+            <h4>I can offer...</h4>
+            <% post.supply.attributes.except!('id', 'post_id', 'created_at', 'updated_at').compact.each do |key, count| %>
+              <p><%= suppliments_names_units[key]['eng_name'] %> <%= count %> <%= suppliments_names_units[key]['eng_unit'] %></p>
+            <% end %>
           </div>
-        <% end %>
-
-        <div class="form-group">
-          <%= form.label "posts[demand_other]", 'Other:', class: 'form-label mr-2', style: 'float:left;' %>
-          <%= form.text_area "posts[demand_other]" %>
-        </div>
-      </div>
-
-      <hr />
-
-      <div>
-        <h4>Preferences:</h4>
-        <div class="form-group">
-          Exchange Method:
-          <p>
-            Mail <%= form.radio_button "posts[exchange_method]", "Mail" %><span class='px-3'></span>
-            In person <%= form.radio_button "posts[exchange_method]", "In person" %><span class='px-3'></span>
-            Both <%= form.radio_button "posts[exchange_method]", "Both" %>
-          </p>
         </div>
 
-        <div class="form-group">
-          <%= form.label "posts[preferred_place]", 'Place: ', class: 'form-label mr-2', style: 'float:left;' %>
-          <%= form.text_area "posts[preferred_place]" %>
+        <hr />
+
+        <div style='height: 80px; overflow: auto;'>
+          Preferred Exchange Method: <%= post.exchange_method == 'Both' ? 'Mail or In Person' : post.exchange_method %>
+          <br />
+          Preferred Exchange Date & Time: <%= post.preferred_date_time %>
+          <br />
+          Preferred Exchange Place: <%= post.preferred_place %>
+          <br />
         </div>
 
-        <div class="form-group">
-          <%= form.label "posts[preferred_date_time]", 'Date & Time: ', class: 'form-label mr-2', style: 'float:left;' %>
-          <%= form.text_area "posts[preferred_date_time]" %>
-        </div>
-      </div>
+        <hr />
 
-      <%= form.submit class: 'btn btn-success' %>
-    <% end %>
-  </div>
+        <div class='row'>
+          <div class='col-4' data-toggle="modal" data-target="#contact_modal_<%= post.id %>">
+            <button class='btn btn-success'>Contact</button>
+          </div>
 
-  <div class='col-9'>
-    <%= link_to "View only my posts", "/my_posts", class: 'btn btn-primary mr-2' %>
-    <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
-    <div class='row'>
-      <% @posts.each do |post| %>
-        <div class='col-4 p-2'>
-          <div class='p-3' style='border: 1px solid #ccc; border-radius: 5px;'>
-            <div class='row'>
-              <div class='col-6'>
-                <h4>I need...</h4>
-                <% post.demand.attributes.except!('id', 'post_id', 'created_at', 'updated_at').compact.each do |key, count| %>
-                  <p><%= suppliments_names_units[key]['eng_name'] %> <%= count %> <%= suppliments_names_units[key]['eng_unit'] %></p>
-                <% end %>
-              </div>
-              <div class='col-6'>
-                <h4>I can offer...</h4>
-                <% post.supply.attributes.except!('id', 'post_id', 'created_at', 'updated_at').compact.each do |key, count| %>
-                  <p><%= suppliments_names_units[key]['eng_name'] %> <%= count %> <%= suppliments_names_units[key]['eng_unit'] %></p>
-                <% end %>
-              </div>
+          <% if post.user_id == current_user.id %>
+            <div class='col-4'>
+              <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-warning' %>
             </div>
 
-            <hr />
-
-            <div>
-              Preferred Exchange Method: <%= post.exchange_method == 'Both' ? 'Mail or In Person' : post.exchange_method %>
-              <br />
-              Preferred Exchange Date & Time: <%= post.preferred_date_time %>
-              <br />
-              Preferred Exchange Place: <%= post.preferred_place %>
-              <br />
-            </div>
-
-            <hr />
-
-            <div class='row'>
-              <div class='col-4' data-toggle="modal" data-target="#contact_modal_<%= post.id %>">
-                <button class='btn btn-success'>Contact</button>
-              </div>
-
-              <% if post.user_id == current_user.id %>
-                <div class='col-4'>
-                  <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-warning' %>
-                </div>
-
-                <div class='col-4'>
-                  <% if post.open_status %>
-                    <%= button_to 'Close', "/posts/close/#{post.id}?redirect_path=root", class: 'btn btn-danger' %>
-                  <% else %>
-                    <%= button_to 'Reopen', "/posts/reopen/#{post.id}?redirect_path=root", class: 'btn btn-warning' %>
-                  <% end %>
-                </div>
+            <div class='col-4'>
+              <% if post.open_status %>
+                <%= button_to 'Close', "/posts/close/#{post.id}?redirect_path=root", class: 'btn btn-danger' %>
               <% else %>
-                <% if @followed_post_ids.include?(post.id) %>
-                  <%= button_to 'Unfollow', "/posts/unfollow/#{post.id}?redirect_path=root", class: 'btn btn-danger' %>
-                <% else %>
-                  <%= button_to 'Follow', "/posts/follow/#{post.id}?redirect_path=root", class: 'btn btn-warning' %>
-                <% end %>
+                <%= button_to 'Reopen', "/posts/reopen/#{post.id}?redirect_path=root", class: 'btn btn-warning' %>
               <% end %>
             </div>
-          </div>
+          <% else %>
+            <% if @followed_post_ids.include?(post.id) %>
+              <%= button_to 'Unfollow', "/posts/unfollow/#{post.id}?redirect_path=root", class: 'btn btn-danger' %>
+            <% else %>
+              <%= button_to 'Follow', "/posts/follow/#{post.id}?redirect_path=root", class: 'btn btn-warning' %>
+            <% end %>
+          <% end %>
         </div>
-
-        <%= render partial: 'contact_modal', locals: { post: post } %>
-      <% end %>
+      </div>
     </div>
-  </div>
 
+    <%= render partial: 'contact_modal', locals: { post: post } %>
+  <% end %>
 </div>
 
 <style media="screen">

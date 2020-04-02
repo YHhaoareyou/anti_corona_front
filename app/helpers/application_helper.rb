@@ -11,4 +11,7 @@ module ApplicationHelper
       'other' => {'eng_name' => 'Other', 'eng_unit' => ''}
     }
   end
+
+  def translation_table
+  end
 end

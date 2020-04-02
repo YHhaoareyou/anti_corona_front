@@ -78,8 +78,8 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    @demand = Demand.find(@post.demand_id)
-    @supply = Supply.find(@post.supply_id)
+    @demand = @post.demand
+    @supply = @post.supply
 
     post_update_hash = {
       exchange_method: params[:post][:exchange_method],

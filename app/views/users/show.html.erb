@@ -1,17 +1,18 @@
-<div class='row'>
-  <h2>My posts</h2>
+<h2>My posts</h2>
+<hr />
 
+<div class='row'>
   <% @posts.each do |post| %>
-    <div class='col-3 p-2'>
-      <div class='p-3' style='border: 1px solid #ccc; border-radius: 5px;'>
-        <div class='row'>
-          <div class='col-6'>
+    <div class='col-lg-3 p-2'>
+      <div class='p-3 card'>
+        <div class='row' style='height: 250px; overflow: auto;'>
+          <div class='col-lg-6'>
             <h4>I need...</h4>
             <% post.demand.attributes.except!('id', 'post_id', 'created_at', 'updated_at').compact.each do |key, count| %>
               <p><%= suppliments_names_units[key]['eng_name'] %> <%= count %> <%= suppliments_names_units[key]['eng_unit'] %></p>
             <% end %>
           </div>
-          <div class='col-6'>
+          <div class='col-lg-6'>
             <h4>I can provide...</h4>
             <% post.supply.attributes.except!('id', 'post_id', 'created_at', 'updated_at').compact.each do |key, count| %>
               <p><%= suppliments_names_units[key]['eng_name'] %> <%= count %> <%= suppliments_names_units[key]['eng_unit'] %></p>
@@ -21,7 +22,7 @@
 
         <hr />
 
-        <div>
+        <div style='height: 80px; overflow: auto;'>
           Preferred Exchange Method: <%= post.exchange_method == 'Both' ? 'Mail or In Person' : post.exchange_method %>
           <br />
           Preferred Exchange Date & Time: <%= post.preferred_date_time %>
@@ -32,7 +33,7 @@
 
         <hr />
 
-        <div>
+        <div style='height: 80px; overflow: auto;'>
           <b>Contact</b>
           <br />
           Phone: <%= post.phone %>
@@ -45,11 +46,11 @@
         <hr />
 
         <div class='row'>
-          <div class='col-6'>
+          <div class='col-lg-6'>
             <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-warning' %>
           </div>
 
-          <div class='col-6'>
+          <div class='col-lg-6'>
             <% if post.open_status %>
               <%= button_to 'Close', "/posts/close/#{post.id}?redirect_path=my_posts", class: 'btn btn-danger' %>
             <% else %>

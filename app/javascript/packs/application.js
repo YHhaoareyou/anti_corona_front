@@ -11,12 +11,6 @@ require('bootstrap')
 require("jquery")
 require("packs/form")
 
-// jQuery(window).on('load', function () {
-//   console.log('123');
-//   contact_inputs = $(".contact_form_fields input");
-//   console.log(contact_inputs);
-// });
-
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.

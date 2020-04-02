@@ -1,5 +1,5 @@
 <div class='row mt-3'>
-  <div class='col-4'>
+  <div class='col-lg-4'>
     <h4>I need...</h4>
     <% @post.demand.attributes.except!('id', 'post_id', 'created_at', 'updated_at').compact.each do |key, count| %>
       <p><%= suppliments_names_units[key]['eng_name'] %> <%= count %> <%= suppliments_names_units[key]['eng_unit'] %></p>
@@ -24,7 +24,7 @@
     <p>Date & Time: <%= @post.preferred_date_time %></p>
   </div>
 
-  <div class='col-6'>
+  <div class='col-lg-6'>
     <!-- Chat -->
   </div>
 </div>
