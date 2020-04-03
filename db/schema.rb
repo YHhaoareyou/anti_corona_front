@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2020_04_02_055750) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "favorite_posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "followed_posts_references", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "post_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2020_04_02_055750) do
     t.string "email", limit: 100
     t.text "other_sns_urls"
     t.string "phone", limit: 20
+    t.string "region", limit: 100
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -61,9 +62,9 @@ ActiveRecord::Schema.define(version: 2020_04_02_055750) do
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "email", default: "", limit: 200, null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token", limit: 200
+    t.string "email", default: "", null: false, collation: "utf8_general_ci"
+    t.string "encrypted_password", default: "", null: false, collation: "utf8_general_ci"
+    t.string "reset_password_token", collation: "utf8_general_ci"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
