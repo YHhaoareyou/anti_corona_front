@@ -1,0 +1,90 @@
+<div class='row'>
+
+<% @posts.each do |post| %>
+  <div class='col-lg-3 p-2'>
+    <div class='p-3 card'>
+      <div class='row' style='height: 250px; overflow: auto;'>
+        <div class='col-lg-6'>
+          <h4>I need...</h4>
+          <% post.demand.attributes.except!('id', 'post_id', 'created_at', 'updated_at').compact.each do |key, count| %>
+            <p class='border-bottom'>
+              <%= suppliments_names_units[key]['eng_name'] %>
+              <span class='badge badge-info'><%= count %></span>
+              <%= suppliments_names_units[key]['eng_unit'] %>
+            </p>
+          <% end %>
+        </div>
+        <div class='col-lg-6'>
+          <h4>I can provide...</h4>
+          <% post.supply.attributes.except!('id', 'post_id', 'created_at', 'updated_at').compact.each do |key, count| %>
+            <p class='border-bottom'>
+              <%= suppliments_names_units[key]['eng_name'] %>
+              <span class='badge badge-info'><%= count %></span>
+              <%= suppliments_names_units[key]['eng_unit'] %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+
+      <hr />
+
+      <div style='height: 80px; overflow: auto;'>
+        <b>Preferences</b><br />
+        Exchange Method: <%= post.exchange_method == 'Both' ? 'Mail or In Person' : post.exchange_method %>
+        <br />
+        Exchange Date & Time: <%= post.preferred_date_time %>
+        <br />
+        Exchange Place: <%= post.preferred_place %>
+        <br />
+      </div>
+
+      <hr />
+
+      <% if page == 'my_posts' %>
+        <div style='height: 80px; overflow: auto;'>
+          <b>Contact</b>
+          <br />
+          Phone: <%= post.phone %>
+          <br />
+          Email: <%= post.email %>
+          <br />
+          Other SNS link: <%= post.other_sns_urls %>
+        </div>
+
+        <hr />
+      <% end %>
+
+      <div class='row'>
+        <% unless page == 'my_posts' %>
+          <div class='col-4' data-toggle="modal" data-target="#contact_modal_<%= post.id %>">
+            <button class='btn btn-success'>Contact</button>
+          </div>
+        <% end %>
+
+        <% if page == 'my_posts' || post.user_id == current_user.id %>
+          <div class='col-4'>
+            <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-warning' %>
+          </div>
+
+          <div class='col-4'>
+            <% if post.open_status %>
+              <%= button_to 'Close', "/posts/close/#{post.id}?redirect_path=#{page}", class: 'btn btn-danger' %>
+            <% else %>
+              <%= button_to 'Reopen', "/posts/reopen/#{post.id}?redirect_path=#{page}", class: 'btn btn-warning' %>
+            <% end %>
+          </div>
+        <% else %>
+          <% if @followed_post_ids&.include?(post.id) || page == 'followed_posts' %>
+            <%= button_to 'Unfollow', "/posts/unfollow/#{post.id}?redirect_path=#{page}", class: 'btn btn-danger' %>
+          <% else %>
+            <%= button_to 'Follow', "/posts/follow/#{post.id}?redirect_path=#{page}", class: 'btn btn-warning' %>
+          <% end %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+  <%= render partial: 'posts/contact_modal', locals: { post: post } %>
+<% end %>
+
+</div>
