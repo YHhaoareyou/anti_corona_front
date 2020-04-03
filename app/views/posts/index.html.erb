@@ -1,68 +1,68 @@
 <button class='btn btn-info' type="button" data-toggle="collapse" data-target="#filter_form">
-  Filter Form 🔻
+  <%= t 'filter_form.title' %> 🔻
 </button>
 
 <div class='collapse card mb-2' id='filter_form'>
   <%= form_with url: "/", method: :get, local: true, class: 'row card-body' do |form| %>
     <div class='col-12 col-lg-4'>
-      <h4>What do you need:</h4>
+      <h4><%= t 'filter_form.supply_title' %>:</h4>
       <% suppliments_names_units.each do |key, name| %>
         <% next if key == 'other' %>
         <div class="form-check">
           <%= form.check_box "posts[supply_#{key}]", class: 'filter_form_checkbox' %>
-          <%= form.label "posts[supply_#{key}]", name['eng_name'], class: 'form-label' %>
+          <%= form.label "posts[supply_#{key}]", name['name'], class: 'form-label' %>
         </div>
       <% end %>
 
       <div class="form-group">
-        <%= form.label "posts[supply_other]", 'Other:', class: 'form-label mr-2', style: 'float:left;' %>
+        <%= form.label "posts[supply_other]", t('other'), class: 'form-label mr-2', style: 'float:left;' %>
         <%= form.text_area "posts[supply_other]" %>
       </div>
     </div>
 
     <div class='col-12 col-lg-4'>
-      <h4>What can you give:</h4>
+      <h4><%= t 'filter_form.demand_title' %>:</h4>
       <% suppliments_names_units.each do |key, name| %>
         <% next if key == 'other' %>
         <div class="form-check">
           <%= form.check_box "posts[demand_#{key}]", class: 'filter_form_checkbox' %>
-          <%= form.label "posts[demand_#{key}]", name['eng_name'], class: 'form-label' %>
+          <%= form.label "posts[demand_#{key}]", name['name'], class: 'form-label' %>
         </div>
       <% end %>
 
       <div class="form-group">
-        <%= form.label "posts[demand_other]", 'Other:', class: 'form-label mr-2', style: 'float:left;' %>
+        <%= form.label "posts[demand_other]", t('other'), class: 'form-label mr-2', style: 'float:left;' %>
         <%= form.text_area "posts[demand_other]" %>
       </div>
     </div>
 
     <div class='col-12 col-lg-4'>
-      <h4>Preferences:</h4>
+      <h4><%= t 'preferences.title' %>:</h4>
       <div class="form-group">
-        Exchange Method:
+        <%= t 'preferences.method' %>:
         <p>
-          Mail <%= form.radio_button "posts[exchange_method]", "Mail" %><span class='px-3'></span>
-          In person <%= form.radio_button "posts[exchange_method]", "In person" %><span class='px-3'></span>
-          Both <%= form.radio_button "posts[exchange_method]", "Both" %>
+          <%= t 'preferences.method_mail' %> <%= form.radio_button "posts[exchange_method]", t('preferences.method_mail') %><span class='px-3'></span>
+          <%= t 'preferences.method_in_person' %> <%= form.radio_button "posts[exchange_method]", t('preferences.method_in_person') %><span class='px-3'></span>
+          <%= t 'preferences.method_both' %> <%= form.radio_button "posts[exchange_method]", "Both" %>
         </p>
       </div>
 
       <div class="form-group">
-        <%= form.label "posts[preferred_place]", 'Place: ', class: 'form-label mr-2', style: 'float:left;' %>
+        <%= form.label "posts[preferred_place]", t('preferences.place'), class: 'form-label mr-2', style: 'float:left;' %>
         <%= form.text_area "posts[preferred_place]" %>
       </div>
 
       <div class="form-group">
-        <%= form.label "posts[preferred_date_time]", 'Date & Time: ', class: 'form-label mr-2', style: 'float:left;' %>
+        <%= form.label "posts[preferred_date_time]", t('preferences.date_time'), class: 'form-label mr-2', style: 'float:left;' %>
         <%= form.text_area "posts[preferred_date_time]" %>
       </div>
 
-      <%= form.submit "Filter", class: 'btn btn-info' %>
+      <%= form.submit "#{t('filter_form.submit')}", class: 'btn btn-info' %>
     </div>
   <% end %>
 </div>
 
-<%= link_to 'Create New Post', new_post_path, class: 'btn btn-success text-white' %>
+<%= link_to t('new_post'), new_post_path, class: 'btn btn-success text-white' %>
 <%= render partial: '/posts/posts', locals: { page: 'root' } %>
 
 <style media="screen">

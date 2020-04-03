@@ -1,22 +1,19 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :close, :reopen, :destroy]
+  before_action :set_post, only: [:edit, :update, :close, :reopen, :destroy]
   before_action :redirect_to_root, only: [:edit, :update, :close, :reopen, :destroy]
+  before_action :get_region, only: [:index, :create, :update]
+  #around_action :switch_locale, only: [:index, :create, :update]
 
   # GET /posts
   # GET /posts.json
   def index
     if params['posts']
       search_params = params['posts'].select{ |k, value| value != '0' && !value.blank? }
-      @posts = Post.search(search_params)
+      @posts = Post.where(region: @region).search(search_params).page(params[:page])
     else
-      @posts = Post.where("open_status = 1 OR user_id = #{current_user.id}")
+      @posts = Post.where(region: @region).where("open_status = 1 OR user_id = #{current_user.id}").page(params[:page])
     end
     @followed_post_ids = current_user.followed_posts.pluck(:id)
-  end
-
-  # GET /posts/1
-  # GET /posts/1.json
-  def show
   end
 
   # GET /posts/new
@@ -38,15 +35,16 @@ class PostsController < ApplicationController
       preferred_date_time: params[:post][:preferred_date_time],
       phone: params[:post][:phone],
       email: params[:post][:email],
-      other_sns_urls: params[:post][:other_sns_urls].reject{ |url| url.empty? }.join(',')
+      other_sns_urls: params[:post][:other_sns_urls].reject{ |url| url.empty? }.join(','),
+      region: @region
     )
 
     @demand = Demand.new(
       post_id: @post.id,
       mask: params[:post][:demand_mask],
       medical_mask: params[:post][:demand_medical_mask],
-      hand_sanitizer_spray: params[:post][:demand_hand_sanitizer_spray],
-      hand_sanitizer_gel: params[:post][:demand_hand_sanitizer_gel],
+      hand_sanitizer: params[:post][:demand_hand_sanitizer],
+      bleach_solution: params[:post][:demand_bleach_solution],
       alcohol_wet_wipe: params[:post][:demand_alcohol_wet_wipe],
       tissue_paper: params[:post][:demand_tissue_paper],
       toilet_paper: params[:post][:demand_toilet_paper],
@@ -56,8 +54,8 @@ class PostsController < ApplicationController
       post_id: @post.id,
       mask: params[:post][:supply_mask],
       medical_mask: params[:post][:supply_medical_mask],
-      hand_sanitizer_spray: params[:post][:supply_hand_sanitizer_spray],
-      hand_sanitizer_gel: params[:post][:supply_hand_sanitizer_gel],
+      hand_sanitizer: params[:post][:supply_hand_sanitizer],
+      bleach_solution: params[:post][:supply_bleach_solution],
       alcohol_wet_wipe: params[:post][:supply_alcohol_wet_wipe],
       tissue_paper: params[:post][:supply_tissue_paper],
       toilet_paper: params[:post][:supply_toilet_paper],
@@ -87,14 +85,15 @@ class PostsController < ApplicationController
       preferred_date_time: params[:post][:preferred_date_time],
       phone: params[:post][:phone],
       email: params[:post][:email],
-      other_sns_urls: params[:post][:other_sns_urls].reject{ |url| url.empty? }.join(',')
+      other_sns_urls: params[:post][:other_sns_urls].reject{ |url| url.empty? }.join(','),
+      region: @region
     }
 
     demand_update_hash = {
       mask: params[:post][:demand_mask].blank? ? nil : params[:post][:demand_mask],
       medical_mask: params[:post][:demand_medical_mask].blank? ? nil : params[:post][:demand_medical_mask],
-      hand_sanitizer_spray: params[:post][:demand_hand_sanitizer_spray].blank? ? nil : params[:post][:demand_hand_sanitizer_spray],
-      hand_sanitizer_gel: params[:post][:demand_hand_sanitizer_gel].blank? ? nil : params[:post][:demand_hand_sanitizer_gel],
+      hand_sanitizer: params[:post][:demand_hand_sanitizer].blank? ? nil : params[:post][:demand_hand_sanitizer],
+      bleach_solution: params[:post][:demand_bleach_solution].blank? ? nil : params[:post][:demand_bleach_solution],
       alcohol_wet_wipe: params[:post][:demand_alcohol_wet_wipe].blank? ? nil : params[:post][:demand_alcohol_wet_wipe],
       tissue_paper: params[:post][:demand_tissue_paper].blank? ? nil : params[:post][:demand_tissue_paper],
       toilet_paper: params[:post][:demand_toilet_paper].blank? ? nil : params[:post][:demand_toilet_paper],
@@ -103,8 +102,8 @@ class PostsController < ApplicationController
     supply_update_hash = {
       mask: params[:post][:supply_mask].blank? ? nil : params[:post][:supply_mask],
       medical_mask: params[:post][:supply_medical_mask].blank? ? nil : params[:post][:supply_medical_mask],
-      hand_sanitizer_spray: params[:post][:supply_hand_sanitizer_spray].blank? ? nil : params[:post][:supply_hand_sanitizer_spray],
-      hand_sanitizer_gel: params[:post][:supply_hand_sanitizer_gel].blank? ? nil : params[:post][:supply_hand_sanitizer_gel],
+      hand_sanitizer: params[:post][:supply_hand_sanitizer].blank? ? nil : params[:post][:supply_hand_sanitizer],
+      bleach_solution: params[:post][:supply_bleach_solution].blank? ? nil : params[:post][:supply_bleach_solution],
       alcohol_wet_wipe: params[:post][:supply_alcohol_wet_wipe].blank? ? nil : params[:post][:supply_alcohol_wet_wipe],
       tissue_paper: params[:post][:supply_tissue_paper].blank? ? nil : params[:post][:supply_tissue_paper],
       toilet_paper: params[:post][:supply_toilet_paper].blank? ? nil : params[:post][:supply_toilet_paper],

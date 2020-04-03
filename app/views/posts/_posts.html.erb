@@ -3,24 +3,24 @@
 <% @posts.each do |post| %>
   <div class='col-lg-3 p-2'>
     <div class='p-3 card'>
-      <div class='row' style='height: 250px; overflow: auto;'>
+      <div class='row' style='height: 200px; overflow: auto;'>
         <div class='col-lg-6'>
-          <h4>I need...</h4>
+          <h4><%= t 'posts.demand_title' %></h4>
           <% post.demand.attributes.except!('id', 'post_id', 'created_at', 'updated_at').compact.each do |key, count| %>
             <p class='border-bottom'>
-              <%= suppliments_names_units[key]['eng_name'] %>
+              <%= suppliments_names_units[key]['name'] %>
               <span class='badge badge-info'><%= count %></span>
-              <%= suppliments_names_units[key]['eng_unit'] %>
+              <%= suppliments_names_units[key]['unit'] %>
             </p>
           <% end %>
         </div>
         <div class='col-lg-6'>
-          <h4>I can provide...</h4>
+          <h4><%= t 'posts.supply_title' %></h4>
           <% post.supply.attributes.except!('id', 'post_id', 'created_at', 'updated_at').compact.each do |key, count| %>
             <p class='border-bottom'>
-              <%= suppliments_names_units[key]['eng_name'] %>
+              <%= suppliments_names_units[key]['name'] %>
               <span class='badge badge-info'><%= count %></span>
-              <%= suppliments_names_units[key]['eng_unit'] %>
+              <%= suppliments_names_units[key]['unit'] %>
             </p>
           <% end %>
         </div>
@@ -29,12 +29,12 @@
       <hr />
 
       <div style='height: 80px; overflow: auto;'>
-        <b>Preferences</b><br />
-        Exchange Method: <%= post.exchange_method == 'Both' ? 'Mail or In Person' : post.exchange_method %>
+        <b><%= t 'preferences.title' %></b><br />
+        <%= t 'preferences.method' %>: <%= post.exchange_method == 'Both' ? t('preferences.method_both_alternative') : post.exchange_method %>
         <br />
-        Exchange Date & Time: <%= post.preferred_date_time %>
+        <%= t 'preferences.date_time' %>: <%= post.preferred_date_time %>
         <br />
-        Exchange Place: <%= post.preferred_place %>
+        <%= t 'preferences.place' %>: <%= post.preferred_place %>
         <br />
       </div>
 
@@ -42,13 +42,13 @@
 
       <% if page == 'my_posts' %>
         <div style='height: 80px; overflow: auto;'>
-          <b>Contact</b>
+          <b><%= t 'contact.title' %></b>
           <br />
-          Phone: <%= post.phone %>
+          <%= t 'contact.phone' %>: <%= post.phone %>
           <br />
-          Email: <%= post.email %>
+          <%= t 'contact.email' %>: <%= post.email %>
           <br />
-          Other SNS link: <%= post.other_sns_urls %>
+          <%= t 'contact.other' %>: <%= post.other_sns_urls %>
         </div>
 
         <hr />
@@ -57,27 +57,27 @@
       <div class='row'>
         <% unless page == 'my_posts' %>
           <div class='col-4' data-toggle="modal" data-target="#contact_modal_<%= post.id %>">
-            <button class='btn btn-success'>Contact</button>
+            <button class='btn btn-success'><%= t 'contact.title' %></button>
           </div>
         <% end %>
 
         <% if page == 'my_posts' || post.user_id == current_user.id %>
           <div class='col-4'>
-            <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-warning' %>
+            <%= link_to t('edit'), edit_post_path(post), class: 'btn btn-warning' %>
           </div>
 
           <div class='col-4'>
             <% if post.open_status %>
-              <%= button_to 'Close', "/posts/close/#{post.id}?redirect_path=#{page}", class: 'btn btn-danger' %>
+              <%= button_to t('close'), "/posts/close/#{post.id}?redirect_path=#{page}", class: 'btn btn-danger' %>
             <% else %>
-              <%= button_to 'Reopen', "/posts/reopen/#{post.id}?redirect_path=#{page}", class: 'btn btn-warning' %>
+              <%= button_to t('reopen'), "/posts/reopen/#{post.id}?redirect_path=#{page}", class: 'btn btn-warning' %>
             <% end %>
           </div>
         <% else %>
           <% if @followed_post_ids&.include?(post.id) || page == 'followed_posts' %>
-            <%= button_to 'Unfollow', "/posts/unfollow/#{post.id}?redirect_path=#{page}", class: 'btn btn-danger' %>
+            <%= button_to t('unfollow'), "/posts/unfollow/#{post.id}?redirect_path=#{page}", class: 'btn btn-danger' %>
           <% else %>
-            <%= button_to 'Follow', "/posts/follow/#{post.id}?redirect_path=#{page}", class: 'btn btn-warning' %>
+            <%= button_to t('follow'), "/posts/follow/#{post.id}?redirect_path=#{page}", class: 'btn btn-warning' %>
           <% end %>
         <% end %>
       </div>
@@ -86,5 +86,9 @@
   </div>
   <%= render partial: 'posts/contact_modal', locals: { post: post } %>
 <% end %>
+
+<div class='col-12'>
+  <%= paginate @posts %>
+</div>
 
 </div>

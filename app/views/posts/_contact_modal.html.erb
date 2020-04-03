@@ -2,17 +2,17 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="contact_modal_<%= post.id %>_label">Contact</h5>
+        <h5 class="modal-title" id="contact_modal_<%= post.id %>_label"><%= t 'contact.title' %></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        Phone: <%= post.phone %>
+        <%= t 'contact.phone' %>: <%= post.phone %>
         <br />
-        Email: <%= post.email %>
+        <%= t 'contact.email' %>: <%= post.email %>
         <br />
-        Other SNS link: <%= post.other_sns_urls %>
+        <%= t 'contact.other' %>: <%= post.other_sns_urls %>
       </div>
     </div>
   </div>

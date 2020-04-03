@@ -5,8 +5,8 @@ one:
   user_id: 1
   mask: 1
   medical_mask: 1
-  hand_sanitizer_spray: 1
-  hand_sanitizer_gel: 1
+  hand_sanitizer: 1
+  bleach_solution: 1
   tissue_paper: 1
   toilet_paper: 1
   alcohol_wet_wipe: 1
@@ -17,8 +17,8 @@ two:
   user_id: 1
   mask: 1
   medical_mask: 1
-  hand_sanitizer_spray: 1
-  hand_sanitizer_gel: 1
+  hand_sanitizer: 1
+  bleach_solution: 1
   tissue_paper: 1
   toilet_paper: 1
   alcohol_wet_wipe: 1

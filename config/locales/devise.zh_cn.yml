@@ -1,0 +1,79 @@
+zh_cn:
+  devise:
+    form:
+      'log_in_title': "登入"
+      'sign_up_title': "注册"
+      'edit_title': "编辑"
+      'forgot_password_title': "忘记密码？"
+      'change_password_title': "更改密码"
+      'email': "Email"
+      'password': "密码"
+      'new_password': "新密码"
+      'password_confirmation': "确认密码"
+      'remember_me': "记得我"
+      'log_in_submit': "登入"
+      'sign_up_submit': "注册"
+      'edit_submit': "更新"
+      'forgot_password_submit': "将密码更改连结寄给我"
+      'change_password_submit': "更改密码"
+    confirmations:
+      confirmed: "您的Email帐号已确认"
+      send_instructions: "您将会收到如何确认Email帐号的指示信"
+      send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
+    failure:
+      already_authenticated: "您已登入"
+      inactive: "您的帐号尚未启动"
+      invalid: "无效的 %{authentication_keys} 或密码"
+      locked: "您的帐号被冻结了"
+      last_attempt: "帐号被冻结前您还有一次机会"
+      not_found_in_database: "无效的 %{authentication_keys} 或密码"
+      timeout: "请重新登入"
+      unauthenticated: "请登入或注册"
+      unconfirmed: "请先确认您的Email"
+    mailer:
+      confirmation_instructions:
+        subject: "Confirmation instructions"
+      reset_password_instructions:
+        subject: "Reset password instructions"
+      unlock_instructions:
+        subject: "Unlock instructions"
+      email_changed:
+        subject: "Email Changed"
+      password_change:
+        subject: "Password Changed"
+    omniauth_callbacks:
+      failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
+      success: "Successfully authenticated from %{kind} account."
+    passwords:
+      no_token: "请从密码变更指示信上的连结进入此页。请确认进入此页时所用的连结跟信上的连结网址一致"
+      send_instructions: "您将会收到密码更改的指示信"
+      send_paranoid_instructions: "若您的帐号存在，您将会收到密码变更的指示信"
+      updated: "密码已变更。您已登入"
+      updated_not_active: "密码已变更"
+    registrations:
+      destroyed: "帐号已删除。请保重并期待与您再次相会"
+      signed_up: "注册成功囉！"
+      signed_up_but_inactive: "注册成功，但帐号仍未启用"
+      signed_up_but_locked: "注册成功，但帐号被冻结中"
+      signed_up_but_unconfirmed: "确认信已发送至您的Email信箱。请依照信中指示启用帐号"
+      update_needs_confirmation: "帐号更新成功。请至Email信箱启用帐号"
+      updated: "帐号更新成功"
+      updated_but_not_signed_in: "帐号更新成功。请再次登入"
+    sessions:
+      signed_in: "登入成功"
+      signed_out: "登出成功"
+      already_signed_out: "已登出"
+    unlocks:
+      send_instructions: "您将会收到解除帐号冻结的指示信"
+      send_paranoid_instructions: "若您的帐号存在，您将会收到解除帐号冻结的指示信"
+      unlocked: "帐号已解除冻结。请再次登入"
+  errors:
+    messages:
+      already_confirmed: "已确认。请再次登入"
+      confirmation_period_expired: "您未能于期间 %{period}内完成确认。请再次申请确认"
+      expired: "已过期。请再次申请"
+      not_found: "找不到..."
+      not_locked: "未被冻结"
+      not_saved:
+        one: "1 error prohibited this %{resource} from being saved:"
+        other: "%{count} errors prohibited this %{resource} from being saved:"

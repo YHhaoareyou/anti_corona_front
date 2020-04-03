@@ -1,7 +1,21 @@
-# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
-
 en:
   devise:
+    form:
+      'log_in_title': "Log In"
+      'sign_up_title': "Sign Up"
+      'edit_title': "Edit"
+      'forgot_password_title': "Forgot your password?"
+      'change_password_title': "Change your password"
+      'email': "Email"
+      'password': "Password"
+      'new_password': "New Password"
+      'password_confirmation': "Confirm Password"
+      'remember_me': "Remember me"
+      'log_in_submit': "Log in"
+      'sign_up_submit': "Sign up"
+      'edit_submit': "Update"
+      'forgot_password_submit': "Send me reset password instructions"
+      'change_password_submit': "Change my password"
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."

@@ -1,0 +1,80 @@
+ja:
+  devise:
+    form:
+      'log_in_title': "ログイン"
+      'sign_up_title': "新規登録"
+      'edit_title': "編集"
+      'forgot_password_title': "パスワード忘れましたか？"
+      'change_password_title': "パスワード変更"
+      'email': "Eメール"
+      'password': "パスワード"
+      'new_password': "新パスワード"
+      'password_confirmation': "パスワード確認"
+      'remember_me': "ログイン状態を保存する"
+      'log_in_submit': "ログイン"
+      'sign_up_submit': "新規登録"
+      'edit_submit': "更新"
+      'forgot_password_submit': "パスワード再発行"
+      'change_password_submit': "パスワード変更"
+    confirmations:
+      new:
+        resend_confirmation_instructions: "アカウント確認メール再送"
+    failure:
+      already_authenticated: "既にログインしました"
+      inactive: "アカウントまだ有効化していません"
+      invalid: "無効な %{authentication_keys} やパスワード"
+      locked: "アカウントはロックされています"
+      last_attempt: "あと一回間違えるとアカウントはロックされます"
+      not_found_in_database: "無効な %{authentication_keys} やパスワード"
+      timeout: "セッションが切れました。再ログインお願いします"
+      unauthenticated: "ログインか新規登録してから続行してください"
+      unconfirmed: "Eメールを確認した上で続行してください"
+    mailer:
+      confirmation_instructions:
+        action: "アカウント確認"
+        greeting: "ようこそ、%{recipient}さん!"
+        instruction: "次のリンクでメールアドレスの確認が完了します:"
+      reset_password_instructions:
+        action: "パスワード変更"
+        greeting: "こんにちは、%{recipient}さん!"
+        instruction: "誰かがパスワードの再設定を希望しました。次のリンクでパスワードの再設定が出来ます。"
+        instruction_2: "あなたが希望したのではないのなら、このメールは無視してください。"
+        instruction_3: "上のリンクにアクセスして新しいパスワードを設定するまで、パスワードは変更されません。"
+      unlock_instructions:
+        action: "アカウントのロック解除"
+        greeting: "こんにちは、%{recipient}さん!"
+        instruction: "アカウントのロックを解除するには下のリンクをクリックしてください。"
+        message: "ログイン失敗が繰り返されたため、アカウントはロックされています。"
+    passwords:
+      no_token: "パスワード変更EMAILに添付されたリンクからアクセスしてください。アクセスする際に用いたリンクが、EMAIL上のリンクと一致しているかご確認ください"
+      send_instructions: "パスワード更新指示のEメールを送ります"
+      send_paranoid_instructions: "アカウントが存在する場合、パスワード変更EMAILを送ります"
+      updated: "パスワードが更新され、ログインしました"
+      updated_not_active: "パスワードが更新されました"
+    registrations:
+      destroyed: "さようなら！またいつか会いましょう"
+      signed_up: "ようこそ！新規登録成功"
+      signed_up_but_inactive: "新規登録成功しましたが、アカウントはまだ有効化していません"
+      signed_up_but_locked: "新規登録成功しましたが、アカウントはロックしています"
+      signed_up_but_unconfirmed: "確認用のリンクがあなたのメールに送りました。リンクを押して新規登録を続行してください"
+      update_needs_confirmation: "アカウントが更新されるには、あなたのメールに送った確認用のリンクを押してください"
+      updated: "アカウントが更新されました"
+      updated_but_not_signed_in: "アカウントが更新されました。ログインをお願いします"
+    sessions:
+      signed_in: "ログインしました"
+      signed_out: "ログアウトしました"
+      already_signed_out: "ログアウトしました"
+    unlocks:
+      send_instructions: "アカウントのロック解除説明は数分後あなたのEメールに送ります"
+      send_paranoid_instructions: "アカウントが存在する場合、ロック解除のEMAILを送ります"
+      unlocked: "アカウントのロックが解除されました。続行するにはログインしてください"
+  errors:
+    messages:
+      already_confirmed: "確認されました。続行するにはログインしてください"
+      confirmation_period_expired: "確認期間 %{period}が過ぎました。新リクエストを作ってください"
+      expired: "期間切れです。新リクエストを作ってください"
+      not_found: "見つかりませんでした"
+      not_locked: "ロックしていません"
+      not_saved:
+        one: "1 error prohibited this %{resource} from being saved:"
+        other: "%{count} errors prohibited this %{resource} from being saved:"

@@ -1,33 +1,71 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
+---
 en:
-  hello: "Hello world"
+  suppliments:
+    mask: Mask
+    medical_mask: Medical Mask
+    hand_sanitizer: Hand Sanitizer
+    bleach_solution: Bleach Solution (Sodium hypochlorite)
+    alcohol_wet_wipe: Alcohol wet wipe
+    tissue_paper: Tissue paper
+    toilet_paper: Toilet paper
+    other: Other
+  suppliments_unit:
+    mask: pieces
+    medical_mask: pieces
+    hand_sanitizer: ml
+    bleach_solution: ml
+    alcohol_wet_wipe: pieces
+    tissue_paper: boxes
+    toilet_paper: rolls
+  close: Close
+  contact:
+    email: Email
+    other: Other SNS links
+    phone: Phone
+    title: Contact
+  edit: Edit
+  edit_title: Edit Post
+  filter_form:
+    demand_title: What can you offer
+    submit: Filter
+    supply_title: What do you need
+    title: Filter Form
+  follow: Follow
+  form_hint:
+    fill_in_at_least_one: Please fill in at least one field
+    select_one: Please select one
+  home:
+    subtitle: Simple Platform for Quarantine Supplies Exchange
+    title: Fight against Corona together!
+  menu:
+    all_posts: All Posts
+    brand: Anti-Corona Front
+    followed_posts: Followed Posts
+    logout: Log Out
+    my_posts: My Posts
+  new_post: Create new post
+  new_title: New Post
+  other: 'Other: '
+  posts:
+    demand_title: I need...
+    other_field: Other
+    supply_title: I can provide...
+  preferences:
+    date_time: Exchange Date & Time
+    method: Exchange method
+    method_both: Both
+    method_both_alternative: Both
+    method_in_person: In person
+    method_mail: Mail
+    place: Exchange Place
+    place_hint: not need to fill in if you choose to exchange with mail
+    title: Preferences
+  reopen: Reopen
+  unfollow: Unfollow
+  views:
+    pagination:
+      first: "&laquo; First"
+      last: "Last &raquo;"
+      previous: "&lsaquo; Previous"
+      next: "Next &rsaquo;"
+      truncate: "&hellip;"

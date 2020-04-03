@@ -1,0 +1,71 @@
+---
+ja:
+  suppliments:
+    mask: マスク
+    medical_mask: 医療用マスク
+    hand_sanitizer: 消毒用アルコール
+    bleach_solution: 塩素系漂白剤
+    alcohol_wet_wipe: アルコール綿
+    tissue_paper: ティシュペーパー
+    toilet_paper: トイレットペーパー
+    other: 他
+  suppliments_unit:
+    mask: 枚
+    medical_mask: 枚
+    hand_sanitizer: ml
+    bleach_solution: ml
+    alcohol_wet_wipe: 枚
+    tissue_paper: 箱
+    toilet_paper: ロール
+  close: 閉じる
+  contact:
+    email: Eメール
+    other: 他のSNSリンク
+    phone: 電話
+    title: 連絡
+  edit: 編集
+  edit_title: ポスト編集
+  filter_form:
+    demand_title: あなたが提供できるもの
+    submit: 絞り込み
+    supply_title: あなたがほしいもの
+    title: 絞り込み
+  follow: 気に入り
+  form_hint:
+    fill_in_at_least_one: 入力欄一つ以上ご記入ください
+    select_one: いずれかをお選びください
+  home:
+    subtitle: 防疫資材交換の情報共有プラットフォーム
+    title: 共にウイルスの危機を乗り越えよう！
+  menu:
+    all_posts: 全てのポスト
+    brand: 反コロナ同盟
+    followed_posts: 気に入りポスト
+    logout: ログアウト
+    my_posts: マイポスト
+  new_post: ポスト新規作成
+  new_title: ポスト新規作成
+  other: '他: '
+  posts:
+    demand_title: ほしいもの
+    other_field: 他
+    supply_title: 提供するもの
+  preferences:
+    date_time: 交換日時
+    method: 交換方法
+    method_both: どっちでもいい
+    method_both_alternative: 郵便か待ち合わせ
+    method_in_person: 待ち合わせ
+    method_mail: 郵便
+    place: 交換場所
+    place_hint: 郵便のみで交換するつもりなら入れなくても大丈夫
+    title: 交換について
+  reopen: 再開する
+  unfollow: 気に入りから削除
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前へ"
+      next: "後へ &rsaquo;"
+      truncate: "&hellip;"
