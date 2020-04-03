@@ -3,7 +3,7 @@ ja:
     form:
       'log_in_title': "ログイン"
       'sign_up_title': "新規登録"
-      'edit_title': "編集"
+      'edit_title': "アカウント編集"
       'forgot_password_title': "パスワード忘れましたか？"
       'change_password_title': "パスワード変更"
       'email': "Eメール"

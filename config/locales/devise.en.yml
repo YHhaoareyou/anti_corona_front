@@ -3,7 +3,7 @@ en:
     form:
       'log_in_title': "Log In"
       'sign_up_title': "Sign Up"
-      'edit_title': "Edit"
+      'edit_title': "Edit Account"
       'forgot_password_title': "Forgot your password?"
       'change_password_title': "Change your password"
       'email': "Email"

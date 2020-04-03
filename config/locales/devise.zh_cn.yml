@@ -3,7 +3,7 @@ zh_cn:
     form:
       'log_in_title': "登入"
       'sign_up_title': "注册"
-      'edit_title': "编辑"
+      'edit_title': "编辑账号"
       'forgot_password_title': "忘记密码？"
       'change_password_title': "更改密码"
       'email': "Email"

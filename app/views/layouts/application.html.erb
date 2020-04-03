@@ -31,12 +31,15 @@
             <li class="nav-item">
               <a class="nav-link text-white" href="/logout"><%= t('menu.logout') %></a>
             </li>
+            <li class="nav-item">
+              <%= link_to "#{t('devise.form.edit_title')}", edit_user_registration_path, class: 'nav-link text-white' %>
+            </li>
           </ul>
         </div>
       </nav>
     <% else %>
       <div class="jumbotron bg-success text-center">
-        <h1 class="display-4 text-white"><%= t('home.title') %></h1>
+        <h2 class="display-4 text-white"><%= t('home.title') %></h2>
         <p class="lead text-white"><%= t('home.subtitle') %></p>
       </div>
     <% end %>

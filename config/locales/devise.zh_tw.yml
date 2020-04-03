@@ -3,7 +3,7 @@ zh_tw:
     form:
       'log_in_title': "登入"
       'sign_up_title': "註冊"
-      'edit_title': "編輯"
+      'edit_title': "編輯帳號"
       'forgot_password_title': "忘記密碼？"
       'change_password_title': "更改密碼"
       'email': "Email"
