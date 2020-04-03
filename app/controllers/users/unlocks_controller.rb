@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Users::UnlocksController < Devise::UnlocksController
+  before_action :redirect_to_root, only: [:edit, :update, :close, :reopen, :destroy]
+  before_action :get_region, only: [:index, :create, :update]
   # GET /resource/unlock/new
   # def new
   #   super

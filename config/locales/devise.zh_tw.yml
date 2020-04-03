@@ -34,7 +34,11 @@ zh_tw:
       confirmation_instructions:
         subject: "Confirmation instructions"
       reset_password_instructions:
-        subject: "Reset password instructions"
+        subject: "[全民防疫陣線] 密碼變更"
+        greeting: "您好，"
+        instruction: "有人嘗試變更您的密碼。點擊下方連結即可更改您的密碼。"
+        instruction_2: "若您沒有更改密碼的打算，請無視這封信。"
+        instruction_3: "密碼不會有任何變更，直到您點擊上方的連結。"
       unlock_instructions:
         subject: "Unlock instructions"
       email_changed:

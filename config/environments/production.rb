@@ -27,7 +27,7 @@ Rails.application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = true
-  config.assets.initialize_on_precompile=false
+  config.assets.initialize_on_precompile = false
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
@@ -65,20 +65,19 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  config.action_mailer.raise_delivery_errors = true
-
+  config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: 'https://anti-corona-front.herokuapp.com/' }
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.smtp_settings = {
-      user_name: ENV['SENDGRID_USERNAME'],
-      password: ENV['SENDGRID_PASSWORD'],
-      domain: 'https://anti-corona-front.herokuapp.com/',
-      address: 'smtp.sendgrid.net',
-      port: 587,
-      authentication: :plain,
-      enable_starttls_auto: true
-  }
+  config.action_mailer.default_url_options = { host: "https://anti-corona-front.herokuapp.com/" }
+
+  # config.action_mailer.smtp_settings = {
+  #     :user_name => "SendGridのアカウント名",
+  #     :password => "SendGridのパスワード",
+  #     :domain => "heroku.com",
+  #     :address => "smtp.sendgrid.net",
+  #     :port => 587,
+  #     :authentication => :plain,
+  #     :enable_starttls_auto => true
+  # }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

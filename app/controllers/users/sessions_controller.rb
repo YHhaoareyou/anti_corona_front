@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
+  before_action :redirect_to_root, only: [:edit, :update, :close, :reopen, :destroy]
+  before_action :get_region, only: [:index, :create, :update]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
