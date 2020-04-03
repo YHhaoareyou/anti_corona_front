@@ -33,13 +33,6 @@ ActiveRecord::Schema.define(version: 2020_04_02_055750) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "message"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.boolean "open_status", default: true
     t.integer "user_id"
@@ -67,24 +60,10 @@ ActiveRecord::Schema.define(version: 2020_04_02_055750) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "suppliments_names", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "key"
-    t.string "english"
-    t.string "english_unit", limit: 100
-    t.string "japanese"
-    t.string "japanese unit", limit: 100
-    t.string "zh_chinese"
-    t.string "zh_chinese_unit", limit: 100
-    t.string "sp_chinese"
-    t.string "sp_chinese_unit", limit: 100
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "email", default: "", null: false
+    t.string "email", default: "", limit: 255, null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
+    t.string "reset_password_token", limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
