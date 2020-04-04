@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   around_action :set_locale
 
-  def set_locale(region)
+  def set_locale
     @region = Rails.configuration.x.maxminddb.lookup(request.remote_ip).country.iso_code
 
     locale = :en
