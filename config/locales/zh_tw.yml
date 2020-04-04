@@ -33,10 +33,11 @@ zh_tw:
   follow: 收藏
   form_hint:
     fill_in_at_least_one: 請填入至少一個欄位
-    select_one: 請選擇其中一個
+    select_one: 請選擇其中一項
   home:
-    subtitle: 防疫物資交換資訊分享平台
-    title: 共體時艱 力抗疫情！
+    title: 共體時艱 全民防疫陣線
+    subtitle: 缺口罩？消毒水存太多？來交換吧！
+    subtitle2: 防疫物資交換及聯絡資訊分享平台
   menu:
     all_posts: 交換請求一覽
     brand: 全民防疫陣線

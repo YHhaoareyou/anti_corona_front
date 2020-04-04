@@ -35,8 +35,9 @@ ja:
     fill_in_at_least_one: 入力欄一つ以上ご記入ください
     select_one: いずれかをお選びください
   home:
-    subtitle: 防疫資材交換の情報共有プラットフォーム
-    title: 共にウイルスの危機を乗り越えよう！
+    title: ウイルスの危機を、共に乗り越えよう！
+    subtitle: マスク足りない？消毒液余ってる？交換しよう！
+    subtitle2: 交換したい防疫資材と連絡先の共有プラットフォーム
   menu:
     all_posts: 全てのポスト
     brand: 反コロナ同盟

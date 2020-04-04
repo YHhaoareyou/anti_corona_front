@@ -35,8 +35,9 @@ en:
     fill_in_at_least_one: Please fill in at least one field
     select_one: Please select one
   home:
-    subtitle: Simple Platform for Quarantine Supplies Exchange
     title: Fight against Corona together!
+    subtitle: Lack of masks? Too much sanitizer? Let's exchange them!
+    subtitle2: Simple sharing platform for Infection Control Supplies to exchange & Contact information
   menu:
     all_posts: All Posts
     brand: Anti-Corona Front
