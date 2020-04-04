@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  before_action :redirect_to_root, only: [:edit, :update, :close, :reopen, :destroy]
   before_action :get_region, only: [:index, :create, :update]
   # You should configure your model like this:
   # devise :omniauthable, omniauth_providers: [:twitter]

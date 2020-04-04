@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :redirect_to_root, only: [:edit, :update, :close, :reopen, :destroy]
   before_action :get_region, only: [:index, :create, :update]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]

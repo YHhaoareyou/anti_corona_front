@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Users::ConfirmationsController < Devise::ConfirmationsController
-  before_action :redirect_to_root, only: [:edit, :update, :close, :reopen, :destroy]
   before_action :get_region, only: [:index, :create, :update]
   # GET /resource/confirmation/new
   # def new
