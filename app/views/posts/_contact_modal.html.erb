@@ -2,17 +2,20 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="contact_modal_<%= post.id %>_label"><%= t 'contact.title' %></h5>
+        <h3 class="modal-title" id="contact_modal_<%= post.id %>_label"><%= t 'contact.title' %></h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <%= t 'contact.phone' %>: <%= post.phone %>
+        <h5><i class="fas fa-phone"></i> <%= post.phone %></h5>
         <br />
-        <%= t 'contact.email' %>: <%= post.email %>
+        <h5><i class="far fa-envelope"></i> <%= post.email %></h5>
         <br />
-        <%= t 'contact.other' %>: <%= post.other_sns_urls %>
+        <h5><i class="fas fa-link"></i> <%= t 'contact.other' %>:</h5>
+        <% post.other_sns_urls.split(',').each do |url| %>
+          <a href="<%= url %>"><%= url %><i class="fas fa-external-link-alt"></i></a><br />
+        <% end %>
       </div>
     </div>
   </div>

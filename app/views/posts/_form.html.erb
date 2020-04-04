@@ -55,17 +55,17 @@
       <h4><%= t 'preferences.title' %></h4>
       <b><%= t 'preferences.method' %>:</b><br />
       <sm>* <%= t 'form_hint.select_one' %></sm><br />
-      <%= t 'preferences.method_mail' %> <%= form.radio_button :exchange_method, t('preferences.method_mail') %><span class='px-3'></span>
-      <%= t 'preferences.method_in_person' %> <%= form.radio_button :exchange_method, t('preferences.method_in_person') %><span class='px-3'></span>
-      <%= t 'preferences.method_both' %> <%= form.radio_button :exchange_method, "Both", required: 'true' %>
+      <i class="fas fa-shipping-fast"></i> <%= t 'preferences.method_mail' %> <%= form.radio_button :exchange_method, t('preferences.method_mail') %><span class='px-3'></span>
+      <i class="fas fa-user-friends"></i> <%= t 'preferences.method_in_person' %> <%= form.radio_button :exchange_method, t('preferences.method_in_person') %><span class='px-3'></span>
+      <i class="fas fa-shipping-fast"></i> <i class="fas fa-user-friends"></i> <%= t 'preferences.method_both' %> <%= form.radio_button :exchange_method, "Both", required: 'true' %>
     </div>
 
     <div id='preference_inputs_div'>
       <div class="form-group">
-        <b><%= t 'preferences.date_time' %>:</b><%= form.text_area :preferred_date_time, class: 'form-control' %>
+        <b><i class="far fa-calendar-alt"></i> <i class="far fa-clock"></i> <%= t 'preferences.date_time' %>:</b><%= form.text_area :preferred_date_time, class: 'form-control' %>
       </div>
       <div class="form-group">
-        <b><%= t 'preferences.place' %> (<%= t 'preferences.place_hint' %>):</b><%= form.text_area :preferred_place, class: 'form-control' %>
+        <b><i class="fas fa-map-marker-alt"></i> <%= t 'preferences.place' %> (<%= t 'preferences.place_hint' %>):</b><%= form.text_area :preferred_place, class: 'form-control' %>
       </div>
     </div>
 
@@ -75,13 +75,13 @@
       <h4><%= t 'contact.title' %></h4>
       <sm>* <%= t 'form_hint.fill_in_at_least_one' %></sm>
       <div class="form-group">
-        <b><%= t 'contact.phone' %>:</b><%= form.text_field :phone, class: 'form-control' %>
+        <b><i class="fas fa-phone"></i> <%= t 'contact.phone' %>:</b><%= form.text_field :phone, class: 'form-control' %>
       </div>
       <div class="form-group">
-        <b><%= t 'contact.email' %>:</b><%= form.text_field :email, class: 'form-control' %>
+        <b><i class="far fa-envelope"></i> <%= t 'contact.email' %>:</b><%= form.text_field :email, class: 'form-control' %>
       </div>
       <div class="form-group" id='other_sns_url_inputs_div'>
-        <b><%= t 'contact.other' %>:</b> <span class='btn btn-primary py-0' id='form_add_url_input_button'>+</span><br />
+        <b><i class="fas fa-link"></i> <%= t 'contact.other' %>:</b> <span class='btn btn-primary py-0' id='form_add_url_input_button'>+</span><br />
         <% if urls = post&.other_sns_urls %>
           <% urls.split(',').each do |url| %>
             <input class="form-control" type="text" name="post[other_sns_urls][]" value='<%= url %>'>

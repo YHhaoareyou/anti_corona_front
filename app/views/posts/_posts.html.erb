@@ -9,11 +9,11 @@
           <% post.demand.attributes.except!('id', 'post_id', 'created_at', 'updated_at').compact.each do |key, value| %>
             <p class='border-bottom'>
               <%= suppliments_names_units[key]['name'] %>
-              <% if key == 'other' %>
+              <% unless key == 'other' %>
                 <span class='badge badge-info'><%= value %></span>
                 <%= suppliments_names_units[key]['unit'] %>
               <% else %>
-                <%= value %>
+                : <%= value %>
               <% end %>
             </p>
           <% end %>
@@ -23,11 +23,11 @@
           <% post.supply.attributes.except!('id', 'post_id', 'created_at', 'updated_at').compact.each do |key, value| %>
             <p class='border-bottom'>
               <%= suppliments_names_units[key]['name'] %>
-              <% if key == 'other' %>
+              <% unless key == 'other' %>
                 <span class='badge badge-info'><%= value %></span>
                 <%= suppliments_names_units[key]['unit'] %>
               <% else %>
-                <%= value %>
+                : <%= value %>
               <% end %>
             </p>
           <% end %>
@@ -40,9 +40,9 @@
         <b><%= t 'preferences.title' %></b><br />
         <%= t 'preferences.method' %>: <%= post.exchange_method == 'Both' ? t('preferences.method_both_alternative') : post.exchange_method %>
         <br />
-        <%= t 'preferences.date_time' %>: <%= post.preferred_date_time %>
+        <%= t 'preferences.date_time' %> <i class="far fa-calendar-alt"></i>: <%= post.preferred_date_time %>
         <br />
-        <%= t 'preferences.place' %>: <%= post.preferred_place %>
+        <%= t 'preferences.place' %> <i class="fas fa-map-marker-alt"></i>: <%= post.preferred_place %>
         <br />
       </div>
 
