@@ -1,8 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:edit, :update, :close, :reopen, :destroy]
   before_action :redirect_to_root, only: [:edit, :update, :close, :reopen, :destroy]
-  before_action :get_region, only: [:index, :create, :update]
-  #around_action :switch_locale, only: [:index, :create, :update]
 
   # GET /posts
   # GET /posts.json

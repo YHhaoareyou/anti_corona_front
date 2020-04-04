@@ -13,6 +13,8 @@ module QuarantineSuppliesExchange
     config.i18n.default_locale = :ja
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
 
+    config.x.maxminddb = MaxMindDB.new("#{Rails.root}/db/GeoLite2-Country.mmdb")
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
