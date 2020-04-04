@@ -61,6 +61,14 @@
         <% end %>
         <%= yield %>
       </div>
+
+      <% unless current_user %>
+        <div class='col-10 offset-1 col-lg-6 offset-lg-3 mt-3 text-secondary'>
+          <sm><%= t 'disclaimer1' %></sm>
+          <sm><%= t 'disclaimer2' %></sm>
+        </div>
+      <% end %>
     </div>
+
   </body>
 </html>
