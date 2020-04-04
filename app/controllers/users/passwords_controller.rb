@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Users::PasswordsController < Devise::PasswordsController
-  before_action :get_region, only: [:index, :create, :update]
   # GET /resource/password/new
   # def new
   #   super

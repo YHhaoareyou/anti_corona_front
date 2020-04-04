@@ -1,15 +1,12 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
-  before_action :get_region
+  around_action :set_locale
 
-  def get_region
+  def set_locale(region)
     @region = Rails.configuration.x.maxminddb.lookup(request.remote_ip).country.iso_code
-    switch_locale(@region)
-  end
 
-  def switch_locale(region)
     locale = :en
-    case region
+    case @region
     when 'JP'
       locale = :ja
     when 'TW'
@@ -23,6 +20,9 @@ class ApplicationController < ActionController::Base
     else
       locale = :en
     end
-    I18n.locale = locale
+
+    I18n.with_locale locale do
+      yield
+    end
   end
 end
