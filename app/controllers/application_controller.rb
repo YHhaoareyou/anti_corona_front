@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   around_action :set_locale
 
   def set_locale
-    @region = Rails.configuration.x.maxminddb.lookup(request.remote_ip).country.iso_code
+    @region = Rails.configuration.x.maxminddb.lookup(request.remote_ip).country.iso_code || 'Failed to locate IP'
 
     locale = :en
     case @region

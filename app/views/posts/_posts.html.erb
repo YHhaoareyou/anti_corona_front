@@ -6,21 +6,29 @@
       <div class='row' style='height: 200px; overflow: auto;'>
         <div class='col-lg-6'>
           <h4><%= t 'posts.demand_title' %></h4>
-          <% post.demand.attributes.except!('id', 'post_id', 'created_at', 'updated_at').compact.each do |key, count| %>
+          <% post.demand.attributes.except!('id', 'post_id', 'created_at', 'updated_at').compact.each do |key, value| %>
             <p class='border-bottom'>
               <%= suppliments_names_units[key]['name'] %>
-              <span class='badge badge-info'><%= count %></span>
-              <%= suppliments_names_units[key]['unit'] %>
+              <% if key == 'other' %>
+                <span class='badge badge-info'><%= value %></span>
+                <%= suppliments_names_units[key]['unit'] %>
+              <% else %>
+                <%= value %>
+              <% end %>
             </p>
           <% end %>
         </div>
         <div class='col-lg-6'>
           <h4><%= t 'posts.supply_title' %></h4>
-          <% post.supply.attributes.except!('id', 'post_id', 'created_at', 'updated_at').compact.each do |key, count| %>
+          <% post.supply.attributes.except!('id', 'post_id', 'created_at', 'updated_at').compact.each do |key, value| %>
             <p class='border-bottom'>
               <%= suppliments_names_units[key]['name'] %>
-              <span class='badge badge-info'><%= count %></span>
-              <%= suppliments_names_units[key]['unit'] %>
+              <% if key == 'other' %>
+                <span class='badge badge-info'><%= value %></span>
+                <%= suppliments_names_units[key]['unit'] %>
+              <% else %>
+                <%= value %>
+              <% end %>
             </p>
           <% end %>
         </div>

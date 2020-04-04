@@ -29,6 +29,12 @@
             <li class="nav-item">
               <a class="nav-link text-white" href="/my_posts"><%= t('menu.my_posts') %></a>
             </li>
+          </ul>
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link text-secondary disabled"><%= @region %></a>
+            </li>
             <li class="nav-item">
               <a class="nav-link text-white" href="/logout"><%= t('menu.logout') %></a>
             </li>
@@ -40,7 +46,7 @@
       </nav>
     <% else %>
       <div class="jumbotron bg-success text-center">
-        <h1 class="display-4 text-white"><%= t('home.title') %></h1>
+        <h2 class="display-4 text-white"><%= t('home.title') %></h2>
         <h5 class="lead text-white"><%= t('home.subtitle') %></h5>
         <h5 class="lead text-white"><%= t('home.subtitle2') %></h5>
       </div>
