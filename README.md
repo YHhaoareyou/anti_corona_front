@@ -1,7 +1,9 @@
 # Anti-Corona Front
 
 [Website link](http://anti-corona-front.herokuapp.com)  
-A simple platform for people to share information of supplies they want to exchange as well as contact information to people in the same country.  
+A simple platform for people to share information of disease prevention supplies they want to exchange as well as contact information to people in the same country.  
+Users can make posts of what supplies they need, what supplies they can offer, time and place to exchange.  
+Users can also filter and look for posts suiting their demand, and obtain contact information of whom they want to exchange with.
 
 ### Motivation
 
