@@ -1,4 +1,8 @@
 $( document ).on ('turbolinks:load', function () {
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+  
   $("#form_add_url_input_button").click(function() {
     $("#other_sns_url_inputs_div").append('<input class="form-control" type="text" name="post[other_sns_urls][]">');
   });

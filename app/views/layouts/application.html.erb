@@ -48,7 +48,7 @@
         </div>
       </nav>
     <% else %>
-      <div class="jumbotron bg-success text-center">
+      <div class="jumbotron bg-success text-center py-5">
         <h2 class="display-4 text-white"><%= t('home.title') %></h2>
         <h5 class="lead text-white"><%= t('home.subtitle') %></h5>
         <h5 class="lead text-white"><%= t('home.subtitle2') %></h5>
@@ -68,6 +68,12 @@
           <sm><%= t 'disclaimer2' %></sm>
         </div>
       <% end %>
+    </div>
+
+    <div class='text-right' style='position: absolute; right: 2px; bottom: 2px;'>
+      <a class='btn btn-light btn-sm' href='https://github.com/YHhaoareyou/anti_corona_front' target='_blank'>
+        <i class="fab fa-github"></i>
+      </a>
     </div>
 
   </body>
