@@ -12,6 +12,23 @@ module ApplicationHelper
     }
   end
 
-  def translation_table
+  def default_meta_tags
+    {
+      site: t('menu.brand'),
+      title: t('home.title'),
+      reverse: true,
+      charset: 'utf-8',
+      description: "#{t('home.subtitle')} #{t('home.subtitle2')}",
+      keywords: "#{t('about1')} #{t('about2')} #{t('about3')}",
+      canonical: request.original_url,
+      separator: '|',
+      og: {
+        site_name: :site,
+        title: :title,
+        description: :description,
+        type: 'website',
+        url: request.original_url,
+      }
+    }
   end
 end
