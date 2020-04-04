@@ -1,4 +1,8 @@
 <h2><%= t 'menu.my_posts' %></h2>
 <hr />
 
-<%= render partial: 'posts/posts', locals: { page: 'my_posts' } %>
+<% if @posts.length == 0 %>
+  <h3 class='text-center'><%= t 'no_post' %></h3>
+<% else %>
+  <%= render partial: 'posts/posts', locals: { page: 'my_posts' } %>
+<% end %>

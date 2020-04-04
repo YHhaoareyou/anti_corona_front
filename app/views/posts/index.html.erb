@@ -63,7 +63,11 @@
 </div>
 
 <%= link_to t('new_post'), new_post_path, class: 'btn btn-success text-white' %>
-<%= render partial: '/posts/posts', locals: { page: 'root' } %>
+<% if @posts.length == 0 %>
+  <h3 class='text-center'><%= t 'no_post' %></h3>
+<% else %>
+  <%= render partial: '/posts/posts', locals: { page: 'root' } %>
+<% end %>
 
 <style media="screen">
   .filter_form_checkbox {

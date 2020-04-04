@@ -7,9 +7,9 @@ class PostsController < ApplicationController
   def index
     if params['posts']
       search_params = params['posts'].select{ |k, value| value != '0' && !value.blank? }
-      @posts = Post.where(region: @region).search(search_params).page(params[:page])
+      @posts = Post.where(region: @region).search(search_params).order(created_at: "DESC").page(params[:page])
     else
-      @posts = Post.where(region: @region).where("open_status = 1 OR user_id = #{current_user.id}").page(params[:page])
+      @posts = Post.where(region: @region).where("open_status = 1 OR user_id = #{current_user.id}").order(created_at: "DESC").page(params[:page])
     end
     @followed_post_ids = current_user.followed_posts.pluck(:id)
   end
