@@ -64,8 +64,25 @@
 
       <% unless current_user %>
         <div class='col-10 offset-1 col-lg-6 offset-lg-3 mt-3 text-secondary'>
-          <sm><%= t 'disclaimer1' %></sm>
-          <sm><%= t 'disclaimer2' %></sm>
+          <div class="card mb-2">
+            <div class="card-header" id="AboutHeading" style='cursor: pointer;' data-toggle="collapse" data-target="#aboutCollapse" aria-expanded="true" aria-controls="aboutCollapse">
+              <h4 class="mb-0">
+                <%= t 'about_title' %>
+              </h4>
+            </div>
+
+            <div id="aboutCollapse" class="collapse" aria-labelledby="AboutHeading">
+              <div class="card-body">
+                <h6 class='mb-4'><%= t 'about1' %></h6>
+                <h6 class='mb-4'><%= t 'about2' %></h6>
+                <h6 class='mb-4'><%= t 'about3' %></h6>
+                <p class='mb-2'><%= t 'about4' %></p>
+                <p class='mb-2'><%= t 'about5' %></p>
+              </div>
+            </div>
+          </div>
+          <p class='text-danger'><%= t 'disclaimer1' %></p>
+          <p class='text-danger'><%= t 'disclaimer2' %></p>
         </div>
       <% end %>
     </div>
