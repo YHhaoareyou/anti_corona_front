@@ -21,6 +21,6 @@ Rails.application.routes.draw do
   end
 
   root 'posts#index'
-  get '/sitemap', to: redirect("https://s3-ap-northeast-1.amazonaws.com/#{ENV['S3_BUCKET_NAME']}/sitemaps/sitemap.xml.gz", status: 301)
+  get '/sitemap', to: redirect("https://s3-ap-northeast-1.amazonaws.com/#{ENV['S3_BUCKET_NAME']}/sitemap.xml.gz", status: 301)
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
