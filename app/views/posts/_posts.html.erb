@@ -4,6 +4,7 @@
   <div class='col-lg-3 p-2'>
     <div class='p-3 card'>
       <div class='row' style='height: 200px; overflow: auto;'>
+        <div class='col-12'><sm class='text-secondary'><%= post.created_at.strftime("%Y/%m/%d") %> (yyyy/mm/dd)</sm></div>
         <div class='col-lg-6'>
           <h4><%= t 'posts.demand_title' %></h4>
           <% post.demand.attributes.except!('id', 'post_id', 'created_at', 'updated_at').compact.each do |key, value| %>
