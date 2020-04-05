@@ -22,9 +22,12 @@ Languages automatically switches according to user's location.
 * Ruby 2.7.0
 * Bundler 2.1.4
 * Rails 6.0.2.2
+* mysql 5.7
 
 ### Setup
 
-1. Clone this repository
-2. Run `bundle install`
-3. Run `bundle exec rails s`
+1. Get the dependencies installed
+2. Clone this repository
+3. Run `bundle install`
+4. Run `bundle exec rake db:schema:load` to create the database and tables
+5. Run `bundle exec rails s`

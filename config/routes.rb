@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get "followed_posts", to: 'users#followed_posts'
   get 'my_posts', to: 'users#show'
+  get 'about', to: 'posts#about'
   devise_scope :user do
     get "user/:id", :to => "users/registrations#detail"
     get "signup", :to => "users/registrations#new"
