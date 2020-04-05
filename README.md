@@ -17,6 +17,10 @@ Languages automatically switches according to user's location.
 * Simplified Chinese for China
 * English for the rest of the world
 
+### Where is the site deployed?
+
+Heroku with ClearDB addon as the database
+
 ### Dependencies
 
 * Ruby 2.7.0
