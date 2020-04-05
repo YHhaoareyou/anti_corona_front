@@ -9,7 +9,8 @@ SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(
 )
 
 SitemapGenerator::Sitemap.create do
-  add '/users/sign_in'
+  add '/'
+  add '/users/sign_in', priority: 0.0
   # Put links creation logic here.
   #
   # The root path '/' and sitemap index file are added automatically for you.

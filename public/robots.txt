@@ -1,1 +1,1 @@
-Sitemap: http://anti-corona-front.herokuapp.com/users/sign_in/sitemap
+Sitemap: http://anti-corona-front.herokuapp.com/sitemap
