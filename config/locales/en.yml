@@ -34,6 +34,7 @@ en:
   form_hint:
     fill_in_at_least_one: Please fill in at least one field
     select_one: Please select one
+    not_recommended: "Not recommended"
   home:
     title: Fight against Corona together!
     subtitle: Lack of masks? Too much sanitizer? Let's exchange them!
@@ -58,7 +59,7 @@ en:
     method_both_alternative: Both
     method_in_person: In person
     method_mail: Mail
-    place: Exchange Place
+    place: Residence/Exchange Place
     place_hint: not need to fill in if you choose to exchange with mail
     title: Preferences
   reopen: Reopen

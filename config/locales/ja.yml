@@ -34,6 +34,7 @@ ja:
   form_hint:
     fill_in_at_least_one: 入力欄一つ以上ご記入ください
     select_one: いずれかをお選びください
+    not_recommended: "推奨しない"
   home:
     title: ウイルスの危機を、共に乗り越えよう！
     subtitle: マスク足りない？消毒液余ってる？交換しよう！
@@ -58,7 +59,7 @@ ja:
     method_both_alternative: 郵便か待ち合わせ
     method_in_person: 待ち合わせ
     method_mail: 郵便
-    place: 交換場所
+    place: 住居地/交換場所
     place_hint: 郵便のみで交換するつもりなら入れなくても大丈夫
     title: 交換について
   reopen: 再開する

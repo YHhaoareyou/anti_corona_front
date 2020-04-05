@@ -56,7 +56,7 @@
       <b><%= t 'preferences.method' %>:</b><br />
       <sm>* <%= t 'form_hint.select_one' %></sm><br />
       <i class="fas fa-shipping-fast"></i> <%= t 'preferences.method_mail' %> <%= form.radio_button :exchange_method, t('preferences.method_mail') %><span class='px-3'></span>
-      <i class="fas fa-user-friends"></i> <%= t 'preferences.method_in_person' %> <%= form.radio_button :exchange_method, t('preferences.method_in_person') %><span class='px-3'></span>
+      <i class="fas fa-user-friends"></i> <%= t 'preferences.method_in_person' %>（<%= t 'form_hint.not_recommended' %>） <%= form.radio_button :exchange_method, t('preferences.method_in_person') %><span class='px-3'></span>
       <i class="fas fa-shipping-fast"></i> <i class="fas fa-user-friends"></i> <%= t 'preferences.method_both' %> <%= form.radio_button :exchange_method, "Both", required: 'true' %>
     </div>
 

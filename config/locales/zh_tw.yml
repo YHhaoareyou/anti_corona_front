@@ -34,6 +34,7 @@ zh_tw:
   form_hint:
     fill_in_at_least_one: 請填入至少一個欄位
     select_one: 請選擇其中一項
+    not_recommended: "不推薦"
   home:
     title: 共體時艱 反肺炎防疫陣線
     subtitle: 缺口罩？消毒水存太多？來交換吧！
@@ -58,7 +59,7 @@ zh_tw:
     method_both_alternative: 郵寄或當面
     method_in_person: 當面
     method_mail: 郵寄
-    place: 交換地點
+    place: 居住地點/交換地點
     place_hint: 若只選擇郵寄方式則不須填入此欄
     title: 交換條件
   reopen: 重新張貼
