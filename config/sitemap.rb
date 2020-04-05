@@ -1,5 +1,5 @@
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = "http://anti-corona-front.herokuapp.com"
+SitemapGenerator::Sitemap.default_host = "http://anti-corona-front.herokuapp.com/users/sign_in"
 SitemapGenerator::Sitemap.sitemaps_host = "https://s3-ap-northeast-1.amazonaws.com/#{ENV['S3_BUCKET_NAME']}"
 SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(
   ENV['S3_BUCKET_NAME'],
@@ -9,7 +9,7 @@ SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(
 )
 
 SitemapGenerator::Sitemap.create do
-  add root_path
+  add '/users/sign_in'
   # Put links creation logic here.
   #
   # The root path '/' and sitemap index file are added automatically for you.
