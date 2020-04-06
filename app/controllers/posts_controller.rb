@@ -39,8 +39,9 @@ class PostsController < ApplicationController
 
     @demand = Demand.new(
       post_id: @post.id,
-      mask: params[:post][:demand_mask],
+      cloth_mask: params[:post][:demand_cloth_mask],
       medical_mask: params[:post][:demand_medical_mask],
+      n95_mask: params[:post][:demand_n95_mask],
       hand_sanitizer: params[:post][:demand_hand_sanitizer],
       bleach_solution: params[:post][:demand_bleach_solution],
       alcohol_wet_wipe: params[:post][:demand_alcohol_wet_wipe],
@@ -50,8 +51,9 @@ class PostsController < ApplicationController
     )
     @supply = Supply.new(
       post_id: @post.id,
-      mask: params[:post][:supply_mask],
+      cloth_mask: params[:post][:supply_cloth_mask],
       medical_mask: params[:post][:supply_medical_mask],
+      n95_mask: params[:post][:supply_n95_mask],
       hand_sanitizer: params[:post][:supply_hand_sanitizer],
       bleach_solution: params[:post][:supply_bleach_solution],
       alcohol_wet_wipe: params[:post][:supply_alcohol_wet_wipe],
@@ -88,8 +90,9 @@ class PostsController < ApplicationController
     }
 
     demand_update_hash = {
-      mask: params[:post][:demand_mask].blank? ? nil : params[:post][:demand_mask],
+      cloth_mask: params[:post][:demand_cloth_mask].blank? ? nil : params[:post][:demand_cloth_mask],
       medical_mask: params[:post][:demand_medical_mask].blank? ? nil : params[:post][:demand_medical_mask],
+      n95_mask: params[:post][:demand_n95_mask].blank? ? nil : params[:post][:demand_n95_mask],
       hand_sanitizer: params[:post][:demand_hand_sanitizer].blank? ? nil : params[:post][:demand_hand_sanitizer],
       bleach_solution: params[:post][:demand_bleach_solution].blank? ? nil : params[:post][:demand_bleach_solution],
       alcohol_wet_wipe: params[:post][:demand_alcohol_wet_wipe].blank? ? nil : params[:post][:demand_alcohol_wet_wipe],
@@ -98,8 +101,9 @@ class PostsController < ApplicationController
       other: params[:post][:demand_other].blank? ? nil : params[:post][:demand_other]
     }
     supply_update_hash = {
-      mask: params[:post][:supply_mask].blank? ? nil : params[:post][:supply_mask],
+      cloth_mask: params[:post][:supply_cloth_mask].blank? ? nil : params[:post][:supply_cloth_mask],
       medical_mask: params[:post][:supply_medical_mask].blank? ? nil : params[:post][:supply_medical_mask],
+      n95_mask: params[:post][:supply_n95_mask].blank? ? nil : params[:post][:supply_n95_mask],
       hand_sanitizer: params[:post][:supply_hand_sanitizer].blank? ? nil : params[:post][:supply_hand_sanitizer],
       bleach_solution: params[:post][:supply_bleach_solution].blank? ? nil : params[:post][:supply_bleach_solution],
       alcohol_wet_wipe: params[:post][:supply_alcohol_wet_wipe].blank? ? nil : params[:post][:supply_alcohol_wet_wipe],

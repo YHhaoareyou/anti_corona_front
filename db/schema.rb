@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_02_055750) do
+ActiveRecord::Schema.define(version: 2020_04_06_121545) do
 
   create_table "demands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "post_id"
-    t.integer "mask"
+    t.integer "cloth_mask"
     t.integer "medical_mask"
+    t.integer "n95_mask"
     t.integer "hand_sanitizer"
     t.integer "bleach_solution"
     t.integer "tissue_paper"
@@ -49,8 +50,9 @@ ActiveRecord::Schema.define(version: 2020_04_02_055750) do
 
   create_table "supplies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "post_id"
-    t.integer "mask"
+    t.integer "cloth_mask"
     t.integer "medical_mask"
+    t.integer "n95_mask"
     t.integer "hand_sanitizer"
     t.integer "bleach_solution"
     t.integer "tissue_paper"
@@ -62,9 +64,9 @@ ActiveRecord::Schema.define(version: 2020_04_02_055750) do
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "email", default: "", null: false, collation: "utf8_general_ci"
-    t.string "encrypted_password", default: "", null: false, collation: "utf8_general_ci"
-    t.string "reset_password_token", collation: "utf8_general_ci"
+    t.string "email", limit: 200, default: "", null: false, collation: "utf8mb4_general_ci"
+    t.string "encrypted_password", default: "", null: false, collation: "utf8mb4_general_ci"
+    t.string "reset_password_token", limit: 200, collation: "utf8mb4_general_ci"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false

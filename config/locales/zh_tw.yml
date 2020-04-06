@@ -1,8 +1,9 @@
 ---
 zh_tw:
   suppliments:
-    mask: 口罩
+    cloth_mask: 布口罩
     medical_mask: 醫用口罩
+    n95_mask: N95口罩
     hand_sanitizer: 酒精消毒水
     bleach_solution: 次氯酸水(漂白水溶液)
     alcohol_wet_wipe: 酒精棉片
@@ -10,8 +11,9 @@ zh_tw:
     toilet_paper: 廁用衛生紙
     other: 其他
   suppliments_unit:
-    mask: 片
+    cloth_mask: 片
     medical_mask: 片
+    n95_mask: 片
     hand_sanitizer: ml
     bleach_solution: ml
     alcohol_wet_wipe: 片

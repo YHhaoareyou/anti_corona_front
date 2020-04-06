@@ -1,8 +1,9 @@
 ---
 ja:
   suppliments:
-    mask: マスク
+    cloth_mask: 布マスク
     medical_mask: 医療用マスク
+    n95_mask: N95口罩
     hand_sanitizer: 消毒用アルコール
     bleach_solution: 塩素系漂白剤
     alcohol_wet_wipe: アルコール綿
@@ -10,8 +11,9 @@ ja:
     toilet_paper: トイレットペーパー
     other: 他
   suppliments_unit:
-    mask: 枚
+    cloth_mask: 枚
     medical_mask: 枚
+    n95_mask: 枚
     hand_sanitizer: ml
     bleach_solution: ml
     alcohol_wet_wipe: 枚

@@ -1,8 +1,9 @@
 module ApplicationHelper
   def suppliments_names_units
     {
-      'mask' => {'name' => t('suppliments.mask'), 'unit' => t('suppliments_unit.mask')},
+      'cloth_mask' => {'name' => t('suppliments.cloth_mask'), 'unit' => t('suppliments_unit.cloth_mask')},
       'medical_mask' => {'name' => t('suppliments.medical_mask'), 'unit' => t('suppliments_unit.medical_mask')},
+      'n95_mask' => {'name' => t('suppliments.n95_mask'), 'unit' => t('suppliments_unit.n95_mask')},
       'hand_sanitizer' => {'name' => t('suppliments.hand_sanitizer'), 'unit' => t('suppliments_unit.hand_sanitizer')},
       'bleach_solution' => {'name' => t('suppliments.bleach_solution'), 'unit' => t('suppliments_unit.bleach_solution')},
       'alcohol_wet_wipe' => {'name' => t('suppliments.alcohol_wet_wipe'), 'unit' => t('suppliments_unit.alcohol_wet_wipe')},

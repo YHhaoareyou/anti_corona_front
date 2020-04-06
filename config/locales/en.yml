@@ -1,8 +1,9 @@
 ---
 en:
   suppliments:
-    mask: Mask
+    cloth_mask: Cloth Mask
     medical_mask: Medical Mask
+    n95_mask: N95 Mask
     hand_sanitizer: Hand Sanitizer
     bleach_solution: Bleach Solution (Sodium hypochlorite)
     alcohol_wet_wipe: Alcohol wet wipe
@@ -10,8 +11,9 @@ en:
     toilet_paper: Toilet paper
     other: Other
   suppliments_unit:
-    mask: pieces
+    cloth_mask: pieces
     medical_mask: pieces
+    n95_mask: pieces
     hand_sanitizer: ml
     bleach_solution: ml
     alcohol_wet_wipe: pieces
